@@ -1,18 +1,19 @@
 <%--
   Created by IntelliJ IDEA.
   User: Admin
-  Date: 11/22/2022
-  Time: 6:52 PM
+  Date: 1/3/2023
+  Time: 11:48 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Product List</title>
 </head>
 <body>
-  <div>
-    <form action="/" method="post"></form>
-  </div>
+    <%@include file="../../fragment/dashboard.jsp"%>
+    <div class="productList_container">
+
+    </div>
 </body>
 </html>

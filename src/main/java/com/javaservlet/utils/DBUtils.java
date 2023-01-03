@@ -16,7 +16,7 @@ public class DBUtils {
         ResultSet rs = pstm.executeQuery();
 
         if(rs.next()) {
-            boolean gender = rs.getBoolean("user_genre");
+            boolean gender = rs.getBoolean("user_gender");
             UserAccount user = new UserAccount();
             user.setUserName(userName);
             user.setPassword(password);
@@ -34,7 +34,7 @@ public class DBUtils {
         ResultSet rs = pstm.executeQuery();
 
         if(rs.next()) {
-            boolean gender = rs.getBoolean("user_genre");
+            boolean gender = rs.getBoolean("user_gender");
             String password = rs.getString("user_password");
             UserAccount user = new UserAccount();
             user.setUserName(userName);
