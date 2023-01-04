@@ -56,6 +56,7 @@ public class DBUtils {
             String code = rs.getString("product_code");
             String name = rs.getString("product_name");
             Float price = rs.getFloat("product_price");
+            System.out.println("Name: " + name);
             Product product = new Product();
             product.setCode(code);
             product.setName(name);

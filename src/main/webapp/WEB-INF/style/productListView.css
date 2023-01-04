@@ -1,0 +1,11 @@
+.productList_container {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.productList_container > h3 {
+    font-size: 3rem;
+    font-weight: bold;
+}

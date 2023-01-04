@@ -55,10 +55,10 @@
 
     <ul class="dashboard__listFunction">
         <li>
-            <a href="/">Người dùng</a>
+            <a href="${pageContext.request.contextPath}/productList">Người dùng</a>
         </li>
         <li>
-            <a href="/">Sản phẩm</a>
+            <a href="${pageContext.request.contextPath}/productList">Sản phẩm</a>
         </li>
         <li>
             <a href="/">Thống kê</a>

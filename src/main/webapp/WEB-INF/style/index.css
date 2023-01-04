@@ -4,3 +4,7 @@
     font-size: 10px;
     font-family: Roboto;
 }
+
+.container {
+    display: flex;
+}
