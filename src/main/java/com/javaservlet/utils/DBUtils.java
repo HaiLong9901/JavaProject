@@ -9,18 +9,22 @@ import java.util.List;
 
 public class DBUtils {
     public static UserAccount findUser(Connection conn, String userName, String password) throws SQLException {
-        String sql = "select * from account where user_name=? and user_password=?";
+        String sql = "select * from account where username=? and password=?";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, userName);
         pstm.setString(2, password);
         ResultSet rs = pstm.executeQuery();
 
         if(rs.next()) {
-            boolean gender = rs.getBoolean("user_gender");
+            boolean gender = rs.getBoolean("gender");
+            String fullName = rs.getString("fullname");
+            String email = rs.getString("email");
             UserAccount user = new UserAccount();
             user.setUserName(userName);
             user.setPassword(password);
             user.setGender(gender?UserAccount.GENDER_MALE:UserAccount.GENDER_FEMALE);
+            user.setFullName(fullName);
+            user.setEmail(email);
             return user;
         }
 
@@ -36,10 +40,14 @@ public class DBUtils {
         if(rs.next()) {
             boolean gender = rs.getBoolean("user_gender");
             String password = rs.getString("user_password");
+            String fullName = rs.getString("fullname");
+            String email = rs.getString("email");
             UserAccount user = new UserAccount();
             user.setUserName(userName);
             user.setPassword(password);
             user.setGender(gender?UserAccount.GENDER_MALE:UserAccount.GENDER_FEMALE);
+            user.setFullName(fullName);
+            user.setEmail(email);
             return user;
         }
 
@@ -53,14 +61,18 @@ public class DBUtils {
         ResultSet rs = pstm.executeQuery();
         List<Product> list = new ArrayList<Product>();
         while (rs.next()) {
-            String code = rs.getString("product_code");
-            String name = rs.getString("product_name");
-            Float price = rs.getFloat("product_price");
+            String code = rs.getString("code");
+            String name = rs.getString("name");
+            int price = rs.getInt("price");
+            String branch = rs.getString("branch");
+            String desc = rs.getString("product_desc");
             System.out.println("Name: " + name);
             Product product = new Product();
             product.setCode(code);
             product.setName(name);
             product.setPrice(price);
+            product.setProduct_desc(desc);
+            product.setBranch(branch);
             list.add(product);
         }
 
@@ -74,8 +86,10 @@ public class DBUtils {
         ResultSet rs = pstm.executeQuery();
         while (rs.next()) {
             String name = rs.getString("product_name");
-            Float price = rs.getFloat("product_price");
-            Product product = new Product(code, name, price);
+            int price = rs.getInt("product_price");
+            String branch = rs.getString("branch");
+            String desc = rs.getString("product_desc");
+            Product product = new Product(code, name, price, branch, desc);
             return product;
         }
 
