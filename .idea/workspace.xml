@@ -10,10 +10,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27fde055-d85a-41ea-a0b0-939457b3faee" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/controller/BrandController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/controller/GenreController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/models/Brand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/models/DetailedInvoice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/models/Genre.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/models/Invoice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/CreateProductServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/createProductView.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/controller/HomeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/HomeServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/controller/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/filter/CookieFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/filter/CookieFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/models/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/models/UserAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/models/UserAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/ProductListServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/ProductListServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/utils/DBUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/utils/DBUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/utils/MyUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/utils/MyUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/style/productListView.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/style/productListView.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/productListView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/productListView.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,9 +40,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="Class" />
-        <option value="Jsp File" />
         <option value="CSS File" />
+        <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -49,21 +65,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/20221/javaworkspace/newweb",
-    "list.type.of.created.stylesheet": "CSS",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/20221/javaworkspace/newweb&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Tomcat 8.5.83" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.83" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/newweb_war_exploded" />
@@ -185,7 +201,16 @@
       <workItem from="1672852941244" duration="2560000" />
       <workItem from="1672939444817" duration="1061000" />
       <workItem from="1673090962316" duration="62000" />
-      <workItem from="1673193419452" duration="3154000" />
+      <workItem from="1673193419452" duration="3228000" />
+      <workItem from="1673263297862" duration="19000" />
+      <workItem from="1673323672955" duration="4058000" />
+      <workItem from="1673369522166" duration="23000" />
+      <workItem from="1673407741806" duration="2611000" />
+      <workItem from="1673539770975" duration="21000" />
+      <workItem from="1673715903836" duration="3145000" />
+      <workItem from="1673801808558" duration="3671000" />
+      <workItem from="1673890581895" duration="1970000" />
+      <workItem from="1673973925144" duration="2616000" />
     </task>
     <servers />
   </component>

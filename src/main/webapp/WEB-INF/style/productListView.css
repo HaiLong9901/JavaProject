@@ -1,11 +1,68 @@
 .productList_container {
-    width: 75%;
+    width: 100%;
+    padding: 0 5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 2rem;
+}
+.productList_container .heading {
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.productList_container .button {
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.productList_container > h3 {
+.productList_container .heading h3 {
     font-size: 3rem;
     font-weight: bold;
+}
+
+.productList_container table {
+    border: solid .1rem gray;
+    width: 100%;
+    overflow: auto;
+    border-collapse: collapse;
+}
+.productList_container table th {
+    font-size: 1.6rem;
+    padding: 1rem;
+    font-weight: bold;
+    color: black;
+    border: black solid .1rem;
+    text-align: center;
+}
+.productList_container table td {
+    font-size: 1.5rem;
+    padding: 1rem;
+    border: solid .1rem gray;
+    text-align: center;
+}
+.productList_container table td a {
+    font-size: 1.5rem;
+    color: red;
+    text-decoration: none;
+}
+.productList_container table td a.edit-btn {
+    color: blue;
+}
+
+.productList_container .button a{
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: white;
+    background: blue;
+    padding: 1rem 2rem;
+    border-radius: .5rem;
+    text-decoration: none;
+    transition: .2s;
+}
+.productList_container .button a:hover {
+    transform: scale(1.05);
 }

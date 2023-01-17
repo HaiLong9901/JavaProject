@@ -17,37 +17,45 @@
     <div class="container">
         <%@include file="../../fragment/dashboard.jsp"%>
         <div class="productList_container">
-            <h3>Product List</h3>
+            <div class="heading">
+                <h3>Danh sách sản phẩm</h3>
+            </div>
 
             <p style="color: red;">${errorString}</p>
-            <c:forEach items="${productList}" var="product">
-                <h3>${product.name}</h3>
-            </c:forEach>
-
             <table >
                 <tr>
-                    <th>Code</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <th>Mã</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá bán</th>
+                    <th>Giá gốc</th>
+                    <th>Mô tả</th>
+                    <th>Thương hiệu</th>
+                    <th>Loại hàng</th>
+                    <th>Sửa</th>
+                    <th>Xóa</th>
                 </tr>
                 <c:forEach items="${productList}" var="product" >
                     <tr>
                         <td>${product.code}</td>
                         <td>${product.name}</td>
                         <td>${product.price}</td>
+                        <td>${product.originalPrice}</td>
+                        <td>${product.product_desc}</td>
+                        <td>${product.brand}</td>
+                        <td>${product.genre}</td>
                         <td>
-                            <a href="editProduct?code=${product.code}">Edit</a>
+                            <a href="editProduct?code=${product.code}" class="edit-btn">Sửa</a>
                         </td>
                         <td>
-                            <a href="deleteProduct?code=${product.code}">Delete</a>
+                            <a href="deleteProduct?code=${product.code}">Xóa</a>
                         </td>
                     </tr>
                 </c:forEach>
             </table>
+            <div class="button">
+                <a href="${pageContext.request.contextPath}/product/createProduct" >Thêm sản phẩm</a>
+            </div>
 
-            <a href="createProduct" >Create Product</a>
         </div>
     </div>
 

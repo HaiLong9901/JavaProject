@@ -38,7 +38,7 @@ public class MyUtils {
         response.addCookie(cookie);
     }
 
-    public static String getUserNameNameInCookie(HttpServletRequest request) {
+    public static String getUserNameInCookie(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
         if(cookies!=null) {
             for(Cookie cookie:cookies) {

@@ -1,26 +1,32 @@
 package com.javaservlet.models;
 
+import java.sql.Blob;
+
 public class Product {
     private String code;
     private String name;
     private int price;
-
     private String product_desc;
-
-    private String branch;
+    private String brand;
+    private String genre;
+    private Blob image;
+    private int originalPrice;
     public Product() {
 
     }
 
-    public Product(String code, String name, int price, String branch, String product_desc) {
+    public Product(String code, String name, int price, String brand, String product_desc, String genre, Blob image, int originalPrice) {
         this.code = code;
         this.name = name;
         this.price = price;
-        this.branch = branch;
+        this.brand = brand;
         this.product_desc = product_desc;
+        this.genre = genre;
+        this.image = image;
+        this.originalPrice = originalPrice;
     }
 
-    public float getPrice() {
+    public int getPrice() {
         return price;
     }
 
@@ -44,12 +50,12 @@ public class Product {
         this.name = name;
     }
 
-    public String getBranch() {
-        return branch;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setBranch(String branch) {
-        this.branch = branch;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
     public String getProduct_desc() {
@@ -58,5 +64,29 @@ public class Product {
 
     public void setProduct_desc(String product_desc) {
         this.product_desc = product_desc;
+    }
+
+    public Blob getImage() {
+        return image;
+    }
+
+    public void setImage(Blob image) {
+        this.image = image;
+    }
+
+    public int getOriginalPrice() {
+        return originalPrice;
+    }
+
+    public void setOriginalPrice(int originalPrice) {
+        this.originalPrice = originalPrice;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 }

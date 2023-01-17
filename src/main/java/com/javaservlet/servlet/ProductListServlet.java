@@ -38,6 +38,7 @@ public class ProductListServlet extends HttpServlet {
 
         request.setAttribute("errorString", errorString);
         request.setAttribute("productList", list);
+        request.setAttribute("isProductList", true);
 
         RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/productListView.jsp");
         dispatcher.forward(request, response);

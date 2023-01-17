@@ -1,26 +1,26 @@
 package com.javaservlet.models;
 
+import java.sql.Blob;
+
 public class UserAccount {
-    public static final String GENDER_MALE = "M";
-    public static final String GENDER_FEMALE = "F";
-
     private String userName;
-    private String gender;
     private String password;
-
     private String email;
     private String fullName;
+    private String phone;
+    private Blob image;
 
     public UserAccount() {
 
     }
 
-    public UserAccount(String userName, String gender, String password, String email, String fullName) {
+    public UserAccount(String userName, String password, String email, String fullName, String phone, Blob image) {
         this.userName = userName;
-        this.gender = gender;
         this.password = password;
         this.email = email;
         this.fullName = fullName;
+        this.phone = phone;
+        this.image = image;
     }
 
     public void setUserName(String userName) {
@@ -29,14 +29,6 @@ public class UserAccount {
 
     public String getUserName() {
         return userName;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     public void setPassword(String password) {
@@ -61,5 +53,21 @@ public class UserAccount {
 
     public String getFullName() {
         return fullName;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setImage(Blob image) {
+        this.image = image;
+    }
+
+    public Blob getImage() {
+        return image;
     }
 }

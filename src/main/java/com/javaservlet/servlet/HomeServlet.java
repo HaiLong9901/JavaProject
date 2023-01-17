@@ -1,4 +1,4 @@
-package com.javaservlet.controller;
+package com.javaservlet.servlet;
 
 import com.javaservlet.models.UserAccount;
 import com.javaservlet.utils.MyUtils;
