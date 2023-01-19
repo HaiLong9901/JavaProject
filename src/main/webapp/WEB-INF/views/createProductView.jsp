@@ -18,7 +18,7 @@
     <%@include file="../../fragment/dashboard.jsp"%>
     <div>
       <h3>Thêm sản phẩm</h3>
-      <form action="POST" action="${pageContext.request.contextPath}/product/createProduct">
+      <form method="POST" action="${pageContext.request.contextPath}/product/createProduct" enctype="multipart/form-data">
         <div>
           <label for="name">Tên sản phẩm</label>
           <input type="text" id="name" name="name" value="${product.name}">
@@ -45,11 +45,19 @@
           <label for="genre">
             loai
           </label>
-          <select name="brand" id="genre" value="${product.genre}">
+          <select name="genre" id="genre" value="${product.genre}">
             <c:forEach items="${genreList}" var="genre">
               <option value="${genre.genreId}">${genre.name}</option>
             </c:forEach>
           </select>
+        </div>
+        <div>
+          <label for="desc">Mô tả</label>
+          <input type="text" value="${product.product_desc}" id="desc" name="desc">
+        </div>
+        <div>
+          <label for="image">Upload</label>
+          <input type="file" value="${product.image}" id="image" name="image">
         </div>
         <input type="submit" value="Submit" />
         <a href="productList">Cancel</a>

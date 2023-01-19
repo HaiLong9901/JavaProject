@@ -2,21 +2,21 @@ package com.javaservlet.models;
 
 public class Brand {
     private String name;
-    private int branchId;
+    private int brandId;
     public Brand() {
 
     }
-    public Brand(int branchId, String name) {
-        this.branchId = branchId;
+    public Brand(int brandId, String name) {
+        this.brandId = brandId;
         this.name = name;
     }
 
-    public int getBranchId() {
-        return branchId;
+    public int getBrandId() {
+        return brandId;
     }
 
-    public void setBranchId(int branchId) {
-        this.branchId = branchId;
+    public void setBrandId(int branchId) {
+        this.brandId = branchId;
     }
 
     public String getName() {

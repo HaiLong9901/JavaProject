@@ -3,6 +3,7 @@ package com.javaservlet.utils;
 import com.javaservlet.models.Product;
 import com.javaservlet.models.UserAccount;
 
+import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,13 +68,13 @@ public class DBUtils {
         ResultSet rs = pstm.executeQuery();
         List<Product> list = new ArrayList<Product>();
         while (rs.next()) {
-            String code = rs.getString("code");
+            int code = rs.getInt("code");
             String name = rs.getString("name");
             int price = rs.getInt("price");
             String brand = rs.getString(10);
             String desc = rs.getString("product_desc");
             int originalPrice = rs.getInt("original_price");
-            Blob image = rs.getBlob("image");
+//            Blob image = rs.getBlob("image");
             String genre = rs.getString(12);
             Product product = new Product();
             product.setCode(code);
@@ -81,7 +82,7 @@ public class DBUtils {
             product.setPrice(price);
             product.setProduct_desc(desc);
             product.setBrand(brand);
-            product.setImage(image);
+//            product.setImage(image);
             product.setOriginalPrice(originalPrice);
             product.setGenre(genre);
             System.out.println(product.getOriginalPrice());
@@ -91,10 +92,10 @@ public class DBUtils {
         return list;
     }
 
-    public static Product findProduct(Connection conn, String code) throws SQLException {
+    public static Product findProduct(Connection conn, int code) throws SQLException {
         String sql = "select * from product where code=?";
         PreparedStatement pstm = conn.prepareStatement(sql);
-        pstm.setString(1, code);
+        pstm.setInt(1, code);
         ResultSet rs = pstm.executeQuery();
         while (rs.next()) {
             String name = rs.getString("name");
@@ -103,8 +104,8 @@ public class DBUtils {
             String desc = rs.getString("product_desc");
             String genre = rs.getString("genre");
             int originalPrice = rs.getInt("original_price");
-            Blob image = rs.getBlob("image");
-            Product product = new Product(code, name, price, branch, desc, genre, image, originalPrice);
+//            InputStream image = rs.getBlob("image");
+            Product product = new Product(name, price, branch, desc, genre, originalPrice);
             return product;
         }
 
@@ -116,24 +117,42 @@ public class DBUtils {
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, product.getName());
         pstm.setFloat(2, product.getPrice());
-        pstm.setString(3, product.getCode());
+        pstm.setInt(3, product.getCode());
         pstm.executeUpdate();
     }
 
     public static void insertProduct(Connection conn, Product product) throws SQLException {
-        String sql = "insert into public.products(name, price, branch, product_desc) values(?,?,?,?)";
+        String sql = null;
+        if (product.getImage() == null) sql = "insert into product(name, price, brand, product_desc, genre, original_price) values(?,?,?,?,?,?)";
+        else sql = "insert into product(name, price, brand, product_desc, genre, image, original_price) values(?,?,?,?,?,?,?)";
+        int brandId = 1;
+        int genreId = 1;
+        try {
+            brandId = Integer.parseInt(product.getBrand());
+            genreId = Integer.parseInt(product.getGenre());
+        } catch (Exception e) {
+
+        }
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, product.getName());
         pstm.setInt(2, product.getPrice());
-        pstm.setString(3, product.getBrand());
+        pstm.setInt(3, brandId);
         pstm.setString(4, product.getProduct_desc());
+        pstm.setInt(5, genreId);
+        if (product.getImage() != null) {
+            pstm.setBinaryStream(6, product.getImage());
+            pstm.setInt(7, product.getOriginalPrice());
+        }
+        else pstm.setInt(6, product.getOriginalPrice());
+
+
         pstm.executeUpdate();
     }
 
     public static void deleteProduct(Connection conn, Product product) throws SQLException {
         String sql = "delete from public.products where code=?";
         PreparedStatement pstm = conn.prepareStatement(sql);
-        pstm.setString(1, product.getCode());
+        pstm.setInt(1, product.getCode());
         pstm.executeUpdate();
     }
 }

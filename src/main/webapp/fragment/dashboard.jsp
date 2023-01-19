@@ -58,7 +58,7 @@
             <a href="${pageContext.request.contextPath}/productList">Người dùng</a>
         </li>
         <li>
-            <a href="${pageContext.request.contextPath}/productList">Sản phẩm</a>
+            <a href="${pageContext.request.contextPath}/product/productList">Sản phẩm</a>
         </li>
         <li>
             <a href="/">Thống kê</a>

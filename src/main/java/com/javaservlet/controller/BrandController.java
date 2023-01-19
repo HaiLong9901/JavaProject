@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BrandController {
-    public static List<Brand> branchQuery(Connection conn) throws SQLException {
-        String sql = "select * from public.brand";
+    public static List<Brand> brandQuery(Connection conn) throws SQLException {
+        String sql = "select * from brand";
         PreparedStatement pstm = conn.prepareStatement(sql);
         ResultSet rs = pstm.executeQuery();
         List<Brand> list = new ArrayList<Brand>();

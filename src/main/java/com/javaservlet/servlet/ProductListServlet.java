@@ -15,7 +15,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/productList"})
+@WebServlet(urlPatterns = {"/product/productList"})
 public class ProductListServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

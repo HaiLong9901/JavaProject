@@ -1,23 +1,32 @@
 package com.javaservlet.models;
 
+import java.io.InputStream;
 import java.sql.Blob;
 
 public class Product {
-    private String code;
+    private int code;
     private String name;
     private int price;
     private String product_desc;
     private String brand;
     private String genre;
-    private Blob image;
+    private InputStream image;
     private int originalPrice;
     public Product() {
 
     }
 
-    public Product(String code, String name, int price, String brand, String product_desc, String genre, Blob image, int originalPrice) {
-        this.code = code;
+    public Product(String name, int price, String brand, String product_desc, String genre, int originalPrice) {
         this.name = name;
+        this.price = price;
+        this.brand = brand;
+        this.product_desc = product_desc;
+        this.genre = genre;
+        this.originalPrice = originalPrice;
+    }
+    public Product( String name, int price, String brand, String product_desc, String genre, InputStream image, int originalPrice) {
+        this.name = name;
+        this.code = code;
         this.price = price;
         this.brand = brand;
         this.product_desc = product_desc;
@@ -34,11 +43,11 @@ public class Product {
         this.price = price;
     }
 
-    public String getCode() {
+    public int getCode(){
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code){
         this.code = code;
     }
 
@@ -66,11 +75,11 @@ public class Product {
         this.product_desc = product_desc;
     }
 
-    public Blob getImage() {
+    public InputStream getImage() {
         return image;
     }
 
-    public void setImage(Blob image) {
+    public void setImage(InputStream image) {
         this.image = image;
     }
 
