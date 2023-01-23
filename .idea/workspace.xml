@@ -10,16 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27fde055-d85a-41ea-a0b0-939457b3faee" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/utils/ExtractFile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/EditProductServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/editProductView.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/controller/BrandController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/controller/BrandController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/models/Brand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/models/Brand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/models/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/CreateProductServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/CreateProductServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/ProductListServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/ProductListServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/utils/DBUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/utils/DBUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/createProductView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/createProductView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/fragment/dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/fragment/dashboard.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,8 +27,8 @@
       <list>
         <option value="HTML File" />
         <option value="CSS File" />
-        <option value="Jsp File" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -203,7 +199,9 @@
       <workItem from="1673973925144" duration="2802000" />
       <workItem from="1674060165952" duration="3251000" />
       <workItem from="1674063748298" duration="1458000" />
-      <workItem from="1674144959302" duration="6008000" />
+      <workItem from="1674144959302" duration="6642000" />
+      <workItem from="1674358600564" duration="5548000" />
+      <workItem from="1674457193525" duration="5630000" />
     </task>
     <servers />
   </component>
@@ -220,5 +218,15 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.postgresql.util.PSQLException" package="org.postgresql.util" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

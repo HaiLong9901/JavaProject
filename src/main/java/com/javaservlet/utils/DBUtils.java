@@ -74,7 +74,6 @@ public class DBUtils {
             String brand = rs.getString(10);
             String desc = rs.getString("product_desc");
             int originalPrice = rs.getInt("original_price");
-//            Blob image = rs.getBlob("image");
             String genre = rs.getString(12);
             Product product = new Product();
             product.setCode(code);
@@ -82,10 +81,8 @@ public class DBUtils {
             product.setPrice(price);
             product.setProduct_desc(desc);
             product.setBrand(brand);
-//            product.setImage(image);
             product.setOriginalPrice(originalPrice);
             product.setGenre(genre);
-            System.out.println(product.getOriginalPrice());
             list.add(product);
         }
 
@@ -100,12 +97,12 @@ public class DBUtils {
         while (rs.next()) {
             String name = rs.getString("name");
             int price = rs.getInt("price");
-            String branch = rs.getString("branch");
+            String brand = rs.getString("brand");
             String desc = rs.getString("product_desc");
             String genre = rs.getString("genre");
             int originalPrice = rs.getInt("original_price");
 //            InputStream image = rs.getBlob("image");
-            Product product = new Product(name, price, branch, desc, genre, originalPrice);
+            Product product = new Product(name, price, brand, desc, genre, originalPrice);
             return product;
         }
 
@@ -115,9 +112,24 @@ public class DBUtils {
     public static void updateProduct(Connection conn, Product product) throws SQLException {
         String sql = "update public.products set product_name=?, product_price=? where product_code=?";
         PreparedStatement pstm = conn.prepareStatement(sql);
+        int brandId = 1;
+        int genreId = 1;
+        try {
+            brandId = Integer.parseInt(product.getBrand());
+            genreId = Integer.parseInt(product.getGenre());
+        } catch (Exception e) {
+
+        }
         pstm.setString(1, product.getName());
-        pstm.setFloat(2, product.getPrice());
-        pstm.setInt(3, product.getCode());
+        pstm.setInt(2, product.getPrice());
+        pstm.setInt(3, brandId);
+        pstm.setString(4, product.getProduct_desc());
+        pstm.setInt(5, genreId);
+        if (product.getImage() != null) {
+            pstm.setBinaryStream(6, product.getImage());
+            pstm.setInt(7, product.getOriginalPrice());
+        }
+        else pstm.setInt(6, product.getOriginalPrice());
         pstm.executeUpdate();
     }
 

@@ -40,12 +40,10 @@ public class CreateProductServlet extends HttpServlet {
         String errorString = null;
         List<Genre> genreList = null;
         List<Brand> brandList = null;
+
         try {
             genreList = GenreController.queryGenre(conn);
             brandList = BrandController.brandQuery(conn);
-            for(Brand data : brandList) {
-                System.out.println("Brandid: " + data.getBrandId() + " name: " + data.getName());
-            }
         } catch (SQLException e) {
             e.printStackTrace();
             errorString = e.getMessage();

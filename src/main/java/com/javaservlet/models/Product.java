@@ -12,6 +12,7 @@ public class Product {
     private String genre;
     private InputStream image;
     private int originalPrice;
+    private int quantity;
     public Product() {
 
     }
@@ -34,7 +35,25 @@ public class Product {
         this.image = image;
         this.originalPrice = originalPrice;
     }
-
+    public Product(String name, int price, String brand, String product_desc, String genre, InputStream image, int originalPrice, int quantity) {
+        this.name = name;
+        this.price = price;
+        this.brand = brand;
+        this.product_desc = product_desc;
+        this.genre = genre;
+        this.image = image;
+        this.originalPrice = originalPrice;
+        this.quantity = quantity;
+    }
+    public Product(String name, int price, String brand, String product_desc, String genre, int originalPrice, int quantity) {
+        this.name = name;
+        this.price = price;
+        this.brand = brand;
+        this.product_desc = product_desc;
+        this.genre = genre;
+        this.originalPrice = originalPrice;
+        this.quantity = quantity;
+    }
     public int getPrice() {
         return price;
     }
@@ -97,5 +116,13 @@ public class Product {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 }
