@@ -31,6 +31,7 @@
                     <th>Mô tả</th>
                     <th>Thương hiệu</th>
                     <th>Loại hàng</th>
+                    <th>Số lượng</th>
                     <th>Sửa</th>
                     <th>Xóa</th>
                 </tr>
@@ -43,6 +44,7 @@
                         <td>${product.product_desc}</td>
                         <td>${product.brand}</td>
                         <td>${product.genre}</td>
+                        <td>${product.quantity}</td>
                         <td>
                             <a href="editProduct?code=${product.code}" class="edit-btn">Sửa</a>
                         </td>

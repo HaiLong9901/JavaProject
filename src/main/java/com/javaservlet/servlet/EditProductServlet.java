@@ -63,6 +63,7 @@ public class EditProductServlet extends HttpServlet {
 
         Connection conn = MyUtils.getStoredConnection(request);
         int code = Integer.parseInt(request.getParameter("code")) ;
+        System.out.println("code: " + code);
         String errorString = null;
         Product product = null;
         List<Genre> genreList = null;
@@ -71,22 +72,15 @@ public class EditProductServlet extends HttpServlet {
             genreList = GenreController.queryGenre(conn);
             brandList = BrandController.brandQuery(conn);
             product = DBUtils.findProduct(conn, code);
+            product.print();
         } catch (SQLException e) {
             e.printStackTrace();
             errorString = e.getMessage();
         }
-//        String hello = "hello";
-//        List<String> list = new ArrayList<String>();
-//        list.add("hello");
-//        list.add("Hi");
-//        list.add("OK");
-//        list.add("Good bye");
-//        request.setAttribute("list", list);
         request.setAttribute("genreList", genreList);
         request.setAttribute("brandList", brandList);
         request.setAttribute("errorString", errorString);
         request.setAttribute("product", product);
-//        request.setAttribute("hello", hello);
         RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/views/editProductView.jsp");
         dispatcher.forward(request, response);
     }
@@ -98,7 +92,7 @@ public class EditProductServlet extends HttpServlet {
         String name = (String) request.getParameter("name");
         String genre = (String) request.getParameter("genre");
         String brand = (String) request.getParameter("brand");
-        String desc = (String) request.getParameter("product_desc");
+        String desc = (String) request.getParameter("desc");
         String priceString = (String) request.getParameter("price");
         String originalPriceString = (String) request.getParameter("originalPrice");
         int price = 0;
@@ -111,6 +105,7 @@ public class EditProductServlet extends HttpServlet {
         }
 
         Product product = new Product(name, price, brand, desc, genre, originalPrice);
+        product.setCode(code);
         String errorString = null;
 
         try {

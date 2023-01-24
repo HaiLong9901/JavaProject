@@ -62,7 +62,7 @@ public class DBUtils {
     public static List<Product> queryProduct(Connection conn) throws SQLException {
         String sql = "select * from product\n" +
                 "inner join brand on product.brand = brand.brandid\n" +
-                "inner join genre on product.genre = genre.genreid";
+                "inner join genre on product.genre = genre.genreid\n" + " where isdelete=false ";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
         ResultSet rs = pstm.executeQuery();
@@ -71,10 +71,11 @@ public class DBUtils {
             int code = rs.getInt("code");
             String name = rs.getString("name");
             int price = rs.getInt("price");
-            String brand = rs.getString(10);
+            String brand = rs.getString(11);
             String desc = rs.getString("product_desc");
             int originalPrice = rs.getInt("original_price");
-            String genre = rs.getString(12);
+            int quantity = rs.getInt("quantity");
+            String genre = rs.getString(13);
             Product product = new Product();
             product.setCode(code);
             product.setName(name);
@@ -83,6 +84,7 @@ public class DBUtils {
             product.setBrand(brand);
             product.setOriginalPrice(originalPrice);
             product.setGenre(genre);
+            product.setQuantity(quantity);
             list.add(product);
         }
 
@@ -103,6 +105,7 @@ public class DBUtils {
             int originalPrice = rs.getInt("original_price");
 //            InputStream image = rs.getBlob("image");
             Product product = new Product(name, price, brand, desc, genre, originalPrice);
+            product.setCode(code);
             return product;
         }
 
@@ -110,7 +113,11 @@ public class DBUtils {
     }
 
     public static void updateProduct(Connection conn, Product product) throws SQLException {
-        String sql = "update public.products set product_name=?, product_price=? where product_code=?";
+        String sql=null;
+        if (product.getImage() != null) {
+            sql = "update product set name=?, price=?, brand=?, product_desc=?, genre=?, image=?, original_price=?   where code=?";
+        }
+        else sql = "update product set name=?, price=?, brand=?, product_desc=?, genre=?,original_price=?   where code=?";
         PreparedStatement pstm = conn.prepareStatement(sql);
         int brandId = 1;
         int genreId = 1;
@@ -128,8 +135,12 @@ public class DBUtils {
         if (product.getImage() != null) {
             pstm.setBinaryStream(6, product.getImage());
             pstm.setInt(7, product.getOriginalPrice());
+            pstm.setInt(8, product.getCode());
         }
-        else pstm.setInt(6, product.getOriginalPrice());
+        else{
+            pstm.setInt(6, product.getOriginalPrice());
+            pstm.setInt(7, product.getCode());
+        }
         pstm.executeUpdate();
     }
 

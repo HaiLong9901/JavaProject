@@ -125,4 +125,8 @@ public class Product {
     public int getQuantity() {
         return quantity;
     }
+
+    public void print() {
+        System.out.println("code: " + this.code + " name: " + this.name + " price: " + this.price + " desc: " + this.product_desc + " original: " + this.originalPrice + " brand: " + this.brand + " genre: " + this.genre);
+    }
 }

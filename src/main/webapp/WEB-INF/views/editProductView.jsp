@@ -20,6 +20,8 @@
         <h3>Sửa sản phẩm</h3>
         <c:if test="${not empty product}">
         <form method="POST" action="${pageContext.request.contextPath}/product/editProduct" enctype="multipart/form-data">
+            <input type="hidden" name="code" value="${product.code}" />
+            <h3>${product.code}</h3>
             <div>
                 <label for="name">Tên sản phẩm</label>
                 <input type="text" id="name" name="name" value="${product.name}">
@@ -37,7 +39,14 @@
             </label>
             <select name="brand" id="brand" value="${product.brand}">
                 <c:forEach items="${brandList}" var="brand">
-                    <option value="${brand.brandId}">${brand.name}</option>
+                    <c:choose>
+                        <c:when test="${brand.brandId == product.brand}">
+                            <option value="${brand.brandId}" selected>${brand.name}</option>
+                        </c:when>
+                        <c:when test="${brand.brandId != product.brand}">
+                            <option value="${brand.brandId}">${brand.name}</option>
+                        </c:when>
+                    </c:choose>
                 </c:forEach>
             </select>
 
@@ -48,7 +57,14 @@
                 </label>
                 <select name="genre" id="genre" value="${product.genre}">
                     <c:forEach items="${genreList}" var="genre">
-                        <option value="${genre.genreId}">${genre.name}</option>
+                        <c:choose>
+                            <c:when test="${genre.genreId == product.genre}">
+                                <option value="${genre.genreId}" selected>${genre.name}</option>
+                            </c:when>
+                            <c:when test="${genre.genreId != product.genre}">
+                                <option value="${genre.genreId}">${genre.name}</option>
+                            </c:when>
+                        </c:choose>
                     </c:forEach>
                 </select>
             </div>
