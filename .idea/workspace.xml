@@ -10,12 +10,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27fde055-d85a-41ea-a0b0-939457b3faee" name="Changes" comment="update edit product">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/services/ProductApiServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/services/ProductService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/AccountServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/CreateAccountServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/DeleteProductServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/DisplayImageServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/ImportInvoiceServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/accountListView.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/createAccountView.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/deleteProductErrorView.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/importInvoiceView.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/models/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/EditProductServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/EditProductServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/models/UserAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/models/UserAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/ProductListServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/ProductListServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/utils/DBUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/utils/DBUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/editProductView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/editProductView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/productListView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/productListView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/style/productListView.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/style/productListView.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/fragment/dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/fragment/dashboard.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,7 +215,12 @@
       <workItem from="1674144959302" duration="6642000" />
       <workItem from="1674358600564" duration="5548000" />
       <workItem from="1674457193525" duration="5789000" />
-      <workItem from="1674551558159" duration="5172000" />
+      <workItem from="1674551558159" duration="5319000" />
+      <workItem from="1674670001172" duration="602000" />
+      <workItem from="1674750435783" duration="5216000" />
+      <workItem from="1674930353327" duration="475000" />
+      <workItem from="1675007702532" duration="5970000" />
+      <workItem from="1675089860801" duration="4853000" />
     </task>
     <servers />
   </component>
@@ -231,11 +249,13 @@
           <properties class="org.postgresql.util.PSQLException" package="org.postgresql.util" />
           <option name="timeStamp" value="1" />
         </breakpoint>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.NumberFormatException" package="java.lang" />
-          <option name="timeStamp" value="2" />
-        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="java.lang.NumberFormatException" memberName="stackTrace" />
+        <PinnedItemInfo parentTag="java.lang.NumberFormatException" memberName="cause" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>

@@ -3,24 +3,29 @@ package com.javaservlet.models;
 import java.sql.Blob;
 
 public class UserAccount {
+    private int userId;
     private String userName;
     private String password;
     private String email;
     private String fullName;
     private String phone;
-    private Blob image;
 
     public UserAccount() {
 
     }
-
-    public UserAccount(String userName, String password, String email, String fullName, String phone, Blob image) {
+    public UserAccount(int userId,String fullName, String userName, String email, String phone) {
+        this.userId = userId;
+        this.userName = userName;
+        this.email = email;
+        this.phone = phone;
+        this.fullName = fullName;
+    }
+    public UserAccount(String userName, String password, String email, String fullName, String phone) {
         this.userName = userName;
         this.password = password;
         this.email = email;
         this.fullName = fullName;
         this.phone = phone;
-        this.image = image;
     }
 
     public void setUserName(String userName) {
@@ -63,11 +68,15 @@ public class UserAccount {
         return phone;
     }
 
-    public void setImage(Blob image) {
-        this.image = image;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public Blob getImage() {
-        return image;
+    public int getUserId() {
+        return userId;
+    }
+
+    public void print() {
+        System.out.println("Name: " + this.fullName + " Account: " + this.userName + " Email: " + this.email + " Phone: " + this.phone);
     }
 }

@@ -1,6 +1,6 @@
 package com.javaservlet.servlet;
 
-import com.javaservlet.models.Product;
+import com.javaservlet.models.UserAccount;
 import com.javaservlet.utils.DBUtils;
 import com.javaservlet.utils.MyUtils;
 
@@ -15,31 +15,33 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/product/productList"})
-public class ProductListServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/account/list"})
+public class AccountServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public ProductListServlet() {
+    public AccountServlet() {
         super();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Connection conn = MyUtils.getStoredConnection(request);
-
         String errorString = null;
-        List<Product> list = null;
+        List<UserAccount> list = null;
         try {
-            list = DBUtils.queryProduct(conn);
+            list = DBUtils.queryUser(conn);
         } catch (SQLException e) {
             e.printStackTrace();
             errorString = e.getMessage();
         }
-
+        for(UserAccount acc:list) {
+            acc.print();
+        }
+        String name = list.get(0).getFullName();
+        request.setAttribute("name", name);
         request.setAttribute("errorString", errorString);
-        request.setAttribute("productList", list);
-
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/productListView.jsp");
+        request.setAttribute("accountList", list);
+        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/accountListView.jsp");
         dispatcher.forward(request, response);
     }
 

@@ -1,6 +1,5 @@
 package com.javaservlet.servlet;
 
-import com.javaservlet.models.Product;
 import com.javaservlet.utils.DBUtils;
 import com.javaservlet.utils.MyUtils;
 
@@ -13,34 +12,33 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 
-@WebServlet(urlPatterns = {"/product/productList"})
-public class ProductListServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/product/deleteProduct"})
+public class DeleteProductServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public ProductListServlet() {
+    public DeleteProductServlet() {
         super();
     }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Connection conn = MyUtils.getStoredConnection(request);
 
+        String code = (String) request.getParameter("code");
         String errorString = null;
-        List<Product> list = null;
         try {
-            list = DBUtils.queryProduct(conn);
+            DBUtils.deleteProduct(conn, code);
         } catch (SQLException e) {
             e.printStackTrace();
             errorString = e.getMessage();
         }
-
-        request.setAttribute("errorString", errorString);
-        request.setAttribute("productList", list);
-
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/productListView.jsp");
-        dispatcher.forward(request, response);
+        if (errorString != null) {
+            request.setAttribute("errorString", errorString);
+            RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/views/deletProductErrorView.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            response.sendRedirect(request.getContextPath() + "/product/productList");
+        }
     }
 
     @Override

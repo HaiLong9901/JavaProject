@@ -55,6 +55,37 @@
       <version>42.5.0</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/com.sun.jersey/jersey-server -->
+    <dependency>
+      <groupId>com.sun.jersey</groupId>
+      <artifactId>jersey-server</artifactId>
+      <version>1.19.2</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.sun.jersey/jersey-core -->
+    <dependency>
+      <groupId>com.sun.jersey</groupId>
+      <artifactId>jersey-core</artifactId>
+      <version>1.19.2</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.sun.jersey/jersey-bundle -->
+    <dependency>
+      <groupId>com.sun.jersey</groupId>
+      <artifactId>jersey-bundle</artifactId>
+      <version>1.19.2</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.json/json -->
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20220924</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/asm/asm -->
+    <dependency>
+      <groupId>asm</groupId>
+      <artifactId>asm</artifactId>
+      <version>3.3.1</version>
+    </dependency>
+
   </dependencies>
   <build>
     <finalName>newweb</finalName>

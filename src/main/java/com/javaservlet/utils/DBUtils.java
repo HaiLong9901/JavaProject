@@ -9,6 +9,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DBUtils {
+
+    public static  List<UserAccount> queryUser(Connection conn) throws SQLException {
+        String sql = "select userid,fullname, username, email, phone from useraccount";
+        PreparedStatement prsm = conn.prepareStatement(sql);
+        ResultSet rs = prsm.executeQuery();
+        List<UserAccount> list = new ArrayList<UserAccount>();
+        while (rs.next()) {
+            int userId = rs.getInt("userid");
+            String userName = rs.getString(("username"));
+            String fullName = rs.getString("fullname");
+            String email = rs.getString("email");
+            String phone = rs.getString("phone");
+            UserAccount user = new UserAccount(userId, fullName, userName, email, phone);
+            list.add(user);
+        }
+        return list;
+    }
     public static UserAccount findUser(Connection conn, String userName, String password) throws SQLException {
         String sql = "select * from useraccount where username=? and password=?";
         PreparedStatement pstm = conn.prepareStatement(sql);
@@ -20,13 +37,11 @@ public class DBUtils {
             String fullName = rs.getString("fullname");
             String email = rs.getString("email");
             String phone = rs.getString("phone");
-            Blob image = rs.getBlob("image");
             UserAccount user = new UserAccount();
             user.setUserName(userName);
             user.setPassword(password);
             user.setFullName(fullName);
             user.setEmail(email);
-            user.setImage(image);
             user.setPhone(phone);
             return user;
         }
@@ -39,7 +54,6 @@ public class DBUtils {
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, userName);
         ResultSet rs = pstm.executeQuery();
-
         if(rs.next()) {
             String password = rs.getString("password");
             String fullName = rs.getString("fullname");
@@ -52,11 +66,23 @@ public class DBUtils {
             user.setFullName(fullName);
             user.setEmail(email);
             user.setPhone(phone);
-            user.setImage(image);
             return user;
         }
 
         return null;
+    }
+
+    public static  void insertUser(Connection conn, UserAccount account) throws SQLException {
+        String sql = "insert into useraccount(username, fullname, password, email, phone)\n" +
+                "values (?,?,?,?,?)";
+        PreparedStatement prsm = conn.prepareStatement(sql);
+        prsm.setString(1, account.getUserName());
+        prsm.setString(2, account.getFullName());
+        prsm.setString(3, account.getPassword());
+        prsm.setString(4, account.getEmail());
+        prsm.setString(5, account.getPhone());
+
+        prsm.executeUpdate();
     }
 
     public static List<Product> queryProduct(Connection conn) throws SQLException {
@@ -71,11 +97,11 @@ public class DBUtils {
             int code = rs.getInt("code");
             String name = rs.getString("name");
             int price = rs.getInt("price");
-            String brand = rs.getString(11);
+            String brand = rs.getString(12);
             String desc = rs.getString("product_desc");
             int originalPrice = rs.getInt("original_price");
             int quantity = rs.getInt("quantity");
-            String genre = rs.getString(13);
+            String genre = rs.getString(14);
             Product product = new Product();
             product.setCode(code);
             product.setName(name);
@@ -103,9 +129,10 @@ public class DBUtils {
             String desc = rs.getString("product_desc");
             String genre = rs.getString("genre");
             int originalPrice = rs.getInt("original_price");
-//            InputStream image = rs.getBlob("image");
-            Product product = new Product(name, price, brand, desc, genre, originalPrice);
+            InputStream image = rs.getBinaryStream("image");
+            Product product = new Product(name, price, brand, desc, genre, image, originalPrice);
             product.setCode(code);
+            product.print();
             return product;
         }
 
@@ -172,10 +199,16 @@ public class DBUtils {
         pstm.executeUpdate();
     }
 
-    public static void deleteProduct(Connection conn, Product product) throws SQLException {
-        String sql = "delete from public.products where code=?";
+    public static void deleteProduct(Connection conn, String code) throws SQLException {
+        String sql = "update product set isdelete = true where code=?";
+        int productCode = 0;
+        try {
+            productCode = Integer.parseInt(code);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         PreparedStatement pstm = conn.prepareStatement(sql);
-        pstm.setInt(1, product.getCode());
+        pstm.setInt(1, productCode);
         pstm.executeUpdate();
     }
 }
