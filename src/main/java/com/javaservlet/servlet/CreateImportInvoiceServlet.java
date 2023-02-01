@@ -8,17 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-//@WebServlet(urlPatterns = {"/invoice/import/list"})
-public class ImportInvoiceServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/invoice/import/add"})
+public class CreateImportInvoiceServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
-    public ImportInvoiceServlet() {
+    public CreateImportInvoiceServlet() {
         super();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/importInvoiceView.jsp");
+        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/createImportInvoiceView.jsp");
         dispatcher.forward(request, response);
     }
 

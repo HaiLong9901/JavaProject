@@ -1,7 +1,6 @@
 package com.javaservlet.servlet;
 
 import com.javaservlet.models.Invoice;
-import com.javaservlet.models.Product;
 import com.javaservlet.utils.DBUtils;
 import com.javaservlet.utils.MyUtils;
 
@@ -16,32 +15,33 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/product/productList"})
-public class ProductListServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/invoice/import/list"})
+public class ImportInvoiceListServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public ProductListServlet() {
+    public ImportInvoiceListServlet() {
         super();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Connection conn = MyUtils.getStoredConnection(request);
-
+        List<Invoice> list = null;
         String errorString = null;
-        List<Product> list = null;
         try {
-            list = DBUtils.queryProduct(conn);
+            list = DBUtils.queryImportInvoice(conn);
         } catch (SQLException e) {
             e.printStackTrace();
             errorString = e.getMessage();
         }
-
+        if (list != null) {
+            for (Invoice invoice:list) {
+                invoice.print();
+            }
+        }
         request.setAttribute("errorString", errorString);
-        request.setAttribute("productList", list);
-
-
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/productListView.jsp");
+        request.setAttribute("invoiceList", list);
+        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/importInvoiceListView.jsp");
         dispatcher.forward(request, response);
     }
 

@@ -9,12 +9,14 @@
 <html>
 <head>
     <title>Tạo tài khoản quản lý</title>
+  <style><%@include file="/WEB-INF/style/index.css"%></style>
 </head>
 <body>
 <div class="container">
   <%@include file="../../fragment/dashboard.jsp"%>
   <div>
     <h3>Tạo tài khoản quản lý</h3>
+    <h4>${errorString}</h4>
     <form method="POST" action="${pageContext.request.contextPath}/account/create">
       <div>
         <label for="fullName">Tên quản lý</label>

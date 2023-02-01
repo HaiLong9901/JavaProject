@@ -1,28 +1,32 @@
 package com.javaservlet.models;
 
 public class Invoice {
+
+    private int invoiceId;
     private String createdAt;
-    private int userId;
+    private String account;
     private int amount;
     private boolean isImport;
+    private String partner;
 
     public Invoice() {
 
     }
 
-    public Invoice(String createdAt, int userId, int amount, boolean isImport) {
+    public Invoice(int invoiceId, String createdAt, String account, int amount, String partner) {
         this.createdAt = createdAt;
-        this.userId = userId;
+        this.account = account;
         this.amount = amount;
-        this.isImport = isImport;
+        this.partner = partner;
+        this.invoiceId = invoiceId;
     }
 
     public int getAmount() {
         return amount;
     }
 
-    public int getUserId() {
-        return userId;
+    public String getAccount() {
+        return this.account;
     }
 
     public String getCreatedAt() {
@@ -37,8 +41,8 @@ public class Invoice {
         this.createdAt = createdAt;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setAccount(String account) {
+        this.account = account;
     }
 
     public boolean isImport() {
@@ -47,5 +51,25 @@ public class Invoice {
 
     public void setImport(boolean anImport) {
         isImport = anImport;
+    }
+
+    public String getPartner() {
+        return partner;
+    }
+
+    public void setPartner(String partner) {
+        this.partner = partner;
+    }
+
+    public int getInvoiceId() {
+        return invoiceId;
+    }
+
+    public void setInvoiceId(int invoiceId) {
+        this.invoiceId = invoiceId;
+    }
+
+    public void print() {
+        System.out.println("account: " + this.account + "date: " +this.createdAt + " amount: " + this.amount);
     }
 }

@@ -39,10 +39,10 @@
                     <td>${account.email}</td>
                     <td>${account.phone}</td>
                     <td>
-                        <a href="editAccount?code=${account.userId}" class="edit-btn">Sửa</a>
+                        <a href="edit?userId=${account.userId}" class="edit-btn">Sửa</a>
                     </td>
                     <td>
-                        <a href="deleteAccount?code=${product.userId}">Xóa</a>
+                        <a href="delete?userId=${account.userId}">Xóa</a>
                     </td>
                 </tr>
             </c:forEach>

@@ -51,9 +51,24 @@ public class MyUtils {
         return null;
     }
 
+    public static void removeCookies(HttpServletRequest request, HttpServletResponse response) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies!=null) {
+            for (Cookie cookie:cookies) {
+                cookie.setMaxAge(0);
+                cookie.setPath("/");
+                cookie.setValue("");
+                response.addCookie(cookie);
+            }
+        }
+    }
+
     public static void deleteUserCookie(HttpServletResponse response) {
         Cookie cookie = new Cookie(ATT_NAME_USER_NAME, null);
+        Cookie cookie1 = new Cookie("JSESSIONID", null);
         cookie.setMaxAge(0);
+        cookie1.setMaxAge(0);
         response.addCookie(cookie);
+        response.addCookie(cookie1);
     }
 }

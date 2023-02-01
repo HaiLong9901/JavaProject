@@ -40,7 +40,9 @@ public class CreateAccountServlet extends HttpServlet {
 
         UserAccount account = new UserAccount(userName, password, email, fullName, phone);
         String errorString = null;
-
+        if (fullName.length() == 0 || userName.length() == 0 || email.length() == 0 || phone.length() == 0) {
+            errorString = "Bạn phai điền đầy đủ các thông tin";
+        }
         if (errorString == null) {
             try {
                 DBUtils.insertUser(conn, account);

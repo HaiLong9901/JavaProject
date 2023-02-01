@@ -93,8 +93,6 @@ public class EditProductServlet extends HttpServlet {
         String genre = (String) request.getParameter("genre");
         String brand = (String) request.getParameter("brand");
         String desc = (String) request.getParameter("desc");
-        String priceString = (String) request.getParameter("price");
-        String originalPriceString = (String) request.getParameter("originalPrice");
         int price = 0;
         int originalPrice = 0;
         try {

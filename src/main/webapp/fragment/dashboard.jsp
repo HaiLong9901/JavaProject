@@ -83,7 +83,7 @@
             <a href="/">Thống kê</a>
         </li>
         <li>
-            <a href="/">Đăng xuất</a>
+            <a href="${pageContext.request.contextPath}/logout">Đăng xuất</a>
         </li>
     </ul>
 </div>

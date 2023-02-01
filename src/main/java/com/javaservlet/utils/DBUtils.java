@@ -1,5 +1,6 @@
 package com.javaservlet.utils;
 
+import com.javaservlet.models.Invoice;
 import com.javaservlet.models.Product;
 import com.javaservlet.models.UserAccount;
 
@@ -11,7 +12,7 @@ import java.util.List;
 public class DBUtils {
 
     public static  List<UserAccount> queryUser(Connection conn) throws SQLException {
-        String sql = "select userid,fullname, username, email, phone from useraccount";
+        String sql = "select userid,fullname, username, email, phone from useraccount where isactive=true";
         PreparedStatement prsm = conn.prepareStatement(sql);
         ResultSet rs = prsm.executeQuery();
         List<UserAccount> list = new ArrayList<UserAccount>();
@@ -59,7 +60,6 @@ public class DBUtils {
             String fullName = rs.getString("fullname");
             String email = rs.getString("email");
             String phone = rs.getString("phone");
-            Blob image = rs.getBlob("image");
             UserAccount user = new UserAccount();
             user.setUserName(userName);
             user.setPassword(password);
@@ -72,6 +72,22 @@ public class DBUtils {
         return null;
     }
 
+    public static UserAccount findUser(Connection conn, int userId) throws  SQLException {
+        String sql = "select * from useraccount where userid = ?";
+        PreparedStatement prsm = conn.prepareStatement(sql);
+        prsm.setInt(1, userId);
+        ResultSet rs = prsm.executeQuery();
+        while (rs.next()) {
+            String useName = rs.getString("username");
+            String fullName = rs.getString("fullname");
+            String email = rs.getString("email");
+            String phone = rs.getString("phone");
+            UserAccount account = new UserAccount(userId, fullName, useName, email, phone);
+            return account;
+        }
+        return null;
+    }
+
     public static  void insertUser(Connection conn, UserAccount account) throws SQLException {
         String sql = "insert into useraccount(username, fullname, password, email, phone)\n" +
                 "values (?,?,?,?,?)";
@@ -81,6 +97,31 @@ public class DBUtils {
         prsm.setString(3, account.getPassword());
         prsm.setString(4, account.getEmail());
         prsm.setString(5, account.getPhone());
+
+        prsm.executeUpdate();
+    }
+
+    public static void deleteAccount(Connection conn, String userId) throws SQLException {
+        String sql = "update useraccount set isactive=false where userid=?";
+        PreparedStatement prsm = conn.prepareStatement(sql);
+        int id = 0;
+        try {
+            id = Integer.parseInt(userId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        prsm.setInt(1, id);
+        prsm.executeUpdate();
+    }
+
+    public static void updateAccount(Connection conn, UserAccount account) throws SQLException {
+        String sql = "update useraccount set username = ?, fullname = ?, email = ?, phone = ? where userid = ?";
+        PreparedStatement prsm = conn.prepareStatement(sql);
+        prsm.setString(1, account.getUserName());
+        prsm.setString(2, account.getFullName());
+        prsm.setString(3, account.getEmail());
+        prsm.setString(4, account.getPhone());
+        prsm.setInt(5, account.getUserId());
 
         prsm.executeUpdate();
     }
@@ -140,7 +181,7 @@ public class DBUtils {
     }
 
     public static void updateProduct(Connection conn, Product product) throws SQLException {
-        String sql=null;
+        String sql = null;
         if (product.getImage() != null) {
             sql = "update product set name=?, price=?, brand=?, product_desc=?, genre=?, image=?, original_price=?   where code=?";
         }
@@ -210,5 +251,23 @@ public class DBUtils {
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setInt(1, productCode);
         pstm.executeUpdate();
+    }
+
+    //Invoice
+    public static List<Invoice> queryImportInvoice(Connection conn) throws SQLException {
+        String sql = "select * from invoice\n" + "inner join useraccount on invoice.account = useraccount.userid where isimport=true";
+        PreparedStatement prsm = conn.prepareStatement(sql);
+        ResultSet rs = prsm.executeQuery();
+        List<Invoice> list = new ArrayList<Invoice>();
+        while (rs.next()) {
+            int invoiceId = rs.getInt("invoiceid");
+            String createdAt = rs.getString("createdat");
+            int amount = rs.getInt("amount");
+            String partner = rs.getString("partner");
+            String account = rs.getString("fullname");
+            Invoice invoice = new Invoice(invoiceId, createdAt, account, amount, partner);
+            list.add(invoice);
+        }
+        return list;
     }
 }
