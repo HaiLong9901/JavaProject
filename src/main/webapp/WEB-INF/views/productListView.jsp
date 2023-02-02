@@ -11,14 +11,17 @@
 <head>
     <title>Product List</title>
     <style><%@include file="/WEB-INF/style/index.css"%></style>
-    <style><%@include file="/WEB-INF/style/productListView.css"%></style>
+    <style><%@include file="/WEB-INF/style/listStyle.css"%></style>
 </head>
 <body>
     <div class="container">
         <%@include file="../../fragment/dashboard.jsp"%>
-        <div class="productList_container">
+        <div class="productList_container list_container">
             <div class="heading">
                 <h3>Danh sách sản phẩm</h3>
+                <div class="button">
+                    <a href="${pageContext.request.contextPath}/product/createProduct" >Thêm sản phẩm</a>
+                </div>
             </div>
 
             <p style="color: red;">${errorString}</p>
@@ -54,9 +57,6 @@
                     </tr>
                 </c:forEach>
             </table>
-            <div class="button">
-                <a href="${pageContext.request.contextPath}/product/createProduct" >Thêm sản phẩm</a>
-            </div>
 
         </div>
     </div>

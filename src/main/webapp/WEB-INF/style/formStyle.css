@@ -1,0 +1,70 @@
+.form_container {
+    width: 85%;
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    align-items: center;
+}
+.form_container > h3 {
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+}
+.form_container .form {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    padding: 2rem;
+}
+.form_container .form .form_input {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.form_container .form .form_input label {
+    font-size: 1.6rem;
+}
+.form_container .form .form_input input {
+    outline: none;
+    padding: .5rem 1rem;
+    font-size: 1.6rem;
+    border: .1rem solid gray;
+    border-radius: .5rem;
+    width: 50%;
+}
+.form_container .form .form_input select {
+    outline: none;
+    padding: .5rem 1rem;
+    font-size: 1.6rem;
+    border: .1rem solid gray;
+    border-radius: .5rem;
+    width: 50%;
+}
+.form_container .form .form_button {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.form_container .form .form_button input {
+    font-size: 1.6rem;
+    color: white;
+    background: blue;
+    padding: .5rem 2rem;
+    border: none;
+    border-radius: .5rem;
+    transition: .2s ease-in-out;
+}
+.form_container .form .form_button input:hover {
+    transform: scale(1.05);
+}
+.form_container .form .form_button a {
+    font-size: 1.6rem;
+    text-decoration: none;
+    padding: .5rem 2rem;
+    border-radius: .5rem;
+    background: lightgray;
+}

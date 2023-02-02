@@ -11,13 +11,17 @@
 <head>
     <title>Danh sách quản lý kho</title>
     <style><%@include file="/WEB-INF/style/index.css"%></style>
+    <style><%@include file="/WEB-INF/style/listStyle.css"%></style>
 </head>
 <body>
 <div class="container">
     <%@include file="../../fragment/dashboard.jsp"%>
-    <div class="accountList_container">
+    <div class="accountList_container list_container">
         <div class="heading">
-            <h3>Danh sách quản lý kho: ${name}</h3>
+            <h3>Danh sách quản lý kho</h3>
+            <div class="button">
+                <a href="${pageContext.request.contextPath}/account/create" >Thêm quản lý</a>
+            </div>
         </div>
 
         <p style="color: red;">${errorString}</p>
@@ -47,9 +51,6 @@
                 </tr>
             </c:forEach>
         </table>
-        <div class="button">
-            <a href="${pageContext.request.contextPath}/account/create" >Thêm quản lý</a>
-        </div>
 
     </div>
 </div>

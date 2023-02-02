@@ -11,13 +11,17 @@
 <head>
     <title>Hóa đơn nhập hàng</title>
   <style><%@include file="/WEB-INF/style/index.css"%></style>
+  <style><%@include file="/WEB-INF/style/listStyle.css"%></style>
 </head>
 <body>
 <div class="container">
   <%@include file="../../fragment/dashboard.jsp"%>
-  <div class="productList_container">
+  <div class="list_container">
     <div class="heading">
       <h3>Danh sách hóa đơn nhập</h3>
+      <div class="button">
+        <a href="${pageContext.request.contextPath}/invoice/import/add" >Tạo đơn nhập</a>
+      </div>
     </div>
 
     <p style="color: red;">${errorString}</p>
@@ -43,9 +47,7 @@
         </tr>
       </c:forEach>
     </table>
-    <div class="button">
-      <a href="${pageContext.request.contextPath}/invoice/import/add" >Tạo đơn nhập</a>
-    </div>
+
 
   </div>
 </div>

@@ -11,29 +11,29 @@
 <head>
     <title>Thêm sản phẩm</title>
   <style><%@include file="/WEB-INF/style/index.css"%></style>
-  <style><%@include file="/WEB-INF/style/productListView.css"%></style>
+  <style><%@include file="/WEB-INF/style/formStyle.css"%></style>
 </head>
 <body>
   <div class="container">
     <%@include file="../../fragment/dashboard.jsp"%>
-    <div>
+    <div class="form_container">
       <h3>Thêm sản phẩm</h3>
-      <form method="POST" action="${pageContext.request.contextPath}/product/createProduct" enctype="multipart/form-data">
-        <div>
+      <form method="POST" action="${pageContext.request.contextPath}/product/createProduct" enctype="multipart/form-data" class="form">
+        <div class="form_input">
           <label for="name">Tên sản phẩm</label>
           <input type="text" id="name" name="name" value="${product.name}">
         </div>
-        <div>
+        <div class="form_input">
           <label for="price">Giá bán</label>
           <input type="text" id="price" name="price" value="${product.price}">
         </div>
-        <div>
-          <label for="originalPrice">Giá goc</label>
+        <div class="form_input">
+          <label for="originalPrice">Giá nhập</label>
           <input type="text" id="originalPrice" name="originalPrice" value="${product.originalPrice}">
         </div>
-        <div>
+        <div class="form_input">
           <label for="brand">
-            hang
+            Thương hiệu
           </label>
           <select name="brand" id="brand" value="${product.brand}">
             <c:forEach items="${brandList}" var="brand">
@@ -41,9 +41,9 @@
             </c:forEach>
           </select>
         </div>
-        <div>
+        <div class="form_input">
           <label for="genre">
-            loai
+            Phân loại hàng
           </label>
           <select name="genre" id="genre" value="${product.genre}">
             <c:forEach items="${genreList}" var="genre">
@@ -51,16 +51,19 @@
             </c:forEach>
           </select>
         </div>
-        <div>
-          <label for="desc">Mô tả</label>
+        <div class="form_input">
+          <label for="desc">Thông số</label>
           <input type="text" value="${product.product_desc}" id="desc" name="desc">
         </div>
-        <div>
-          <label for="image">Upload</label>
-          <input type="file" value="${product.image}" id="image" name="image">
+        <div class="form_input">
+          <label for="image">Tải ảnh lên</label>
+          <input type="file" value="${product.image}" id="image" name="image" style="display: none;">
         </div>
-        <input type="submit" value="Submit" />
-        <a href="productList">Cancel</a>
+        <div class="form_button">
+          <input type="submit" value="Submit" />
+          <a href="productList" class="link_buttton">Cancel</a>
+        </div>
+
       </form>
     </div>
   </div>

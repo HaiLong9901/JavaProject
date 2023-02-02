@@ -10,41 +10,58 @@
 <head>
     <title>Chỉnh sửa tài khoản quản lý</title>
     <style><%@include file="/WEB-INF/style/index.css"%></style>
+    <style><%@include file="/WEB-INF/style/formStyle.css"%></style>
 </head>
 <body>
 <div class="container">
     <%@include file="../../fragment/dashboard.jsp"%>
-    <div>
+    <div class="form_container">
         <h3>Sửa sản phẩm</h3>
-        <c:if test="${not empty acc}">
-            <form method="POST" action="${pageContext.request.contextPath}/account/edit">
-                <input type="text" name="userId" value="${acc.userId}" />
-                <h3>${acc.userId}</h3>
-                <div>
-                    <label for="ID">ID</label>
-                    <input type="text" name="ID" id="ID" value="${acc.userId}" disabled>
-                </div>
-                <div>
+        <i class="errorString" >${errorString}</i>
+<%--        <c:if test="${not empty acc}" style="width: 100%;">--%>
+            <form method="POST" action="${pageContext.request.contextPath}/account/edit" class="form">
+                <input type="hidden" name="userId" value="${acc.userId}" />
+                <div class="form_input">
                     <label for="fullName">Tên quản lý</label>
                     <input type="text" id="fullName" name="fullName" value="${acc.fullName}">
                 </div>
-                <div>
+                <div class="form_input">
                     <label for="userName">Tài khoản</label>
                     <input type="text" id="userName" name="userName" value="${acc.userName}">
                 </div>
-                <div>
+                <div class="form_input">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" value="${acc.email}">
                 </div>
-                <div>
+                <div class="form_input">
                     <label for="phone">Số điện thoại</label>
-                    <input type="text" value="${user.phone}" id="phone" name="phone">
+                    <input type="text" value="${acc.phone}" id="phone" name="phone">
                 </div>
-                <input type="submit" value="Submit" />
-                <a href="list">Cancel</a>
+                <div class="form_button">
+                    <input type="submit" value="Sửa" />
+                    <a href="list">Quay lại</a>
+                </div>
+                <input type="hidden" name="count" class="test_input">
             </form>
-        </c:if>
+<%--        </c:if>--%>
     </div>
+    <div class="test">
+        <h3 class="name0">${acc.userName}</h3>
+    </div><span class="add">Add</span>
 </div>
+<script>
+    const test = document.querySelector(".test")
+    const add = document.querySelector(".add")
+    const count = document.querySelector(".test_input")
+    let index = 1
+    add.addEventListener("click", () => {
+        console.log("click")
+        console.log(test.innerHTML)
+        test.innerHTML+="<h3 class='name" + index + "'>${acc.userName}</h3>";
+        count.value = index;
+        console.log({count})
+        ++index;
+    })
+</script>
 </body>
 </html>

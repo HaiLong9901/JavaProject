@@ -14,7 +14,7 @@
         .dashboard {
             width: 15%;
             height: 100vh;
-            background-color: dodgerblue;
+            background-image: linear-gradient( 132.6deg,  rgba(71,139,214,1) 23.3%, rgba(37,216,211,1) 84.7% );
         }
         .dashboard .dashboard__header {
             width: 100%;

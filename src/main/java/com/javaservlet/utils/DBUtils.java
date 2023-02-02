@@ -1,5 +1,6 @@
 package com.javaservlet.utils;
 
+import com.javaservlet.models.DetailedInvoice;
 import com.javaservlet.models.Invoice;
 import com.javaservlet.models.Product;
 import com.javaservlet.models.UserAccount;
@@ -60,12 +61,14 @@ public class DBUtils {
             String fullName = rs.getString("fullname");
             String email = rs.getString("email");
             String phone = rs.getString("phone");
+            int userId = rs.getInt("userid");
             UserAccount user = new UserAccount();
             user.setUserName(userName);
             user.setPassword(password);
             user.setFullName(fullName);
             user.setEmail(email);
             user.setPhone(phone);
+            user.setUserId(userId);
             return user;
         }
 
@@ -269,5 +272,35 @@ public class DBUtils {
             list.add(invoice);
         }
         return list;
+    }
+
+    public static int insertInvoice(Connection conn, Invoice invoice) throws SQLException {
+        String sql = "insert into invoice(account, partner, amount) values (?, ?, ?)";
+        PreparedStatement prsm = conn.prepareStatement(sql);
+        int accountId = 0;
+        try {
+            accountId = Integer.parseInt(invoice.getAccount());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        prsm.setInt(1, accountId);
+        prsm.setString(2, invoice.getPartner());
+        prsm.setInt(3, invoice.getAmount());
+
+        prsm.executeUpdate();
+
+        String querySql = "select * from invoice\n" +
+                "order by createdat desc\n" +
+                "limit 1";
+        prsm = conn.prepareStatement(querySql);
+        ResultSet rs = prsm.executeQuery();
+        while (rs.next()) {
+            return rs.getInt("invoiceid");
+        }
+        return 0;
+    }
+
+    public static void insertDetailedInvoice(Connection conn, DetailedInvoice detailedInvoice) throws SQLException {
+//        String sql = ""
     }
 }

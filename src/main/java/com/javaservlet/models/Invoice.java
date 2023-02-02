@@ -20,6 +20,11 @@ public class Invoice {
         this.partner = partner;
         this.invoiceId = invoiceId;
     }
+    public Invoice(String account, int amount, String partner) {
+        this.account = account;
+        this.amount = amount;
+        this.partner = partner;
+    }
 
     public int getAmount() {
         return amount;

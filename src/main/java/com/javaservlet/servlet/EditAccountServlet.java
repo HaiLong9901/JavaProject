@@ -3,6 +3,7 @@ package com.javaservlet.servlet;
 import com.javaservlet.models.UserAccount;
 import com.javaservlet.utils.DBUtils;
 import com.javaservlet.utils.MyUtils;
+import com.javaservlet.utils.ValidationUltils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -62,6 +63,8 @@ public class EditAccountServlet extends HttpServlet {
         String fullName = (String) request.getParameter("fullName");
         String email = (String) request.getParameter("email");
         String phone = (String) request.getParameter("phone");
+        String dog = (String) request.getParameter("count");
+        System.out.println("DOg: " + dog);
         UserAccount account = new UserAccount(userId, fullName, userName, email, phone);
         String errorString = null;
 
@@ -71,6 +74,7 @@ public class EditAccountServlet extends HttpServlet {
             e.printStackTrace();
             errorString = e.getMessage();
         }
+        if (!ValidationUltils.validatePhone(phone)) errorString = "Số điện thoại phải bao gồm 10 chữ số";
         request.setAttribute("errorString", errorString);
         request.setAttribute("acc", account);
         if (errorString != null) {
