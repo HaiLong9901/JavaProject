@@ -256,6 +256,34 @@ public class DBUtils {
         pstm.executeUpdate();
     }
 
+    public static void updateProductQuantity(Connection conn, int productId, int quantity) throws SQLException {
+        String sqlQuery = "select quantity from product where code = ?";
+        PreparedStatement prsm = conn.prepareStatement(sqlQuery);
+        prsm.setInt(1, productId);
+        ResultSet rs = prsm.executeQuery();
+        int currentQuantity = 0;
+        while (rs.next()) {
+            currentQuantity = rs.getInt("quantity");
+        }
+        String sql = "update product set quantity = ? where code = ?";
+        prsm = conn.prepareStatement(sql);
+        prsm.setInt(1, quantity + currentQuantity);
+        prsm.setInt(2, productId);
+
+        prsm.executeUpdate();
+    }
+    public static int getProductOriginalPrice(Connection conn, int productId) throws SQLException {
+        String sql = "select original_price from product where code = ?";
+        PreparedStatement prsm = conn.prepareStatement(sql);
+        prsm.setInt(1, productId);
+        ResultSet rs = prsm.executeQuery();
+        int price = 0;
+        while (rs.next()){
+            price = rs.getInt("original_price");
+        }
+        return price;
+    }
+
     //Invoice
     public static List<Invoice> queryImportInvoice(Connection conn) throws SQLException {
         String sql = "select * from invoice\n" + "inner join useraccount on invoice.account = useraccount.userid where isimport=true";
@@ -272,6 +300,22 @@ public class DBUtils {
             list.add(invoice);
         }
         return list;
+    }
+
+    public static void updateInvoiceAmount(Connection conn, int invoiceId, int amount) throws SQLException {
+        String sqlQuery = "select amount from invoice where invoiceid = ?";
+        PreparedStatement prsm = conn.prepareStatement(sqlQuery);
+        prsm.setInt(1, invoiceId);
+        ResultSet rs = prsm.executeQuery();
+        int currentAmount = 0;
+        while (rs.next()) {
+            currentAmount = rs.getInt("amount");
+        }
+        String sql = "update invoice set amount = ? where invoiceid = ?";
+        prsm = conn.prepareStatement(sql);
+        prsm.setInt(1, amount + currentAmount);
+        prsm.setInt(2, invoiceId);
+        prsm.executeUpdate();
     }
 
     public static int insertInvoice(Connection conn, Invoice invoice) throws SQLException {
@@ -300,7 +344,30 @@ public class DBUtils {
         return 0;
     }
 
+    public static Invoice findInvoice(Connection conn, int invoiceId) throws SQLException {
+        String sql = "select * from invoice where invoiceid = ?";
+        PreparedStatement prsm = conn.prepareStatement(sql);
+        prsm.setInt(1, invoiceId);
+        ResultSet rs = prsm.executeQuery();
+        while (rs.next()) {
+            int amount = rs.getInt("amount");
+            String createdAt = rs.getString("createdat");
+            String partner = rs.getString("partner");
+            int account = rs.getInt("account");
+            boolean isImport = rs.getBoolean("isimport");
+            Invoice invoice = new Invoice(invoiceId, createdAt, Integer.toString(account), amount,partner);
+            return invoice;
+        }
+        return null;
+    }
+
     public static void insertDetailedInvoice(Connection conn, DetailedInvoice detailedInvoice) throws SQLException {
-//        String sql = ""
+        String sql = "insert into detailedinvoice(quantity, invoiceid, product) values (?, ?, ?)";
+        PreparedStatement prsm = conn.prepareStatement(sql);
+        prsm.setInt(1, detailedInvoice.getQuantity());
+        prsm.setInt(2, detailedInvoice.getInvoiceId());
+        prsm.setInt(3, detailedInvoice.getProductId());
+
+        prsm.executeUpdate();
     }
 }

@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <span class="addButton">Thêm sản phẩm</span>
-                <input type="hidden" name="count" class="count">
+                <input type="hidden" name="count" class="count" value="1">
                 <div class="form_button">
                     <input type="submit" value="Tạo đơn">
                     <a href="list">Quay lại</a>

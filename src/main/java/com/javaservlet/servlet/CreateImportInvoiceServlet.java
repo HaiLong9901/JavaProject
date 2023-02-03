@@ -1,5 +1,6 @@
 package com.javaservlet.servlet;
 
+import com.javaservlet.models.DetailedInvoice;
 import com.javaservlet.models.Invoice;
 import com.javaservlet.models.Product;
 import com.javaservlet.models.UserAccount;
@@ -48,21 +49,38 @@ public class CreateImportInvoiceServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Connection conn = MyUtils.getStoredConnection(request);
-        String count = (String) request.getParameter("count");
+        String countStr = (String) request.getParameter("count");
         String partner = (String) request.getParameter("partner");
         String account = MyUtils.getUserNameInCookie(request);
         UserAccount acc = null;
         String errorString = null;
-        int aidi = 0;
+        int invoiceId = 0;
+        int count = 0;
         try {
+            count = Integer.parseInt(countStr);
             acc = DBUtils.findUser(conn, account);
-            System.out.println("acc: " + acc.getUserId());
             Invoice invoice = new Invoice(Integer.toString(acc.getUserId()), 0, partner);
-            aidi = DBUtils.insertInvoice(conn, invoice);
+            invoiceId = DBUtils.insertInvoice(conn, invoice);
+            for (int i = 0; i < count; ++i) {
+                int productId = Integer.parseInt((String) request.getParameter("product" + i)) ;
+                int quantity = Integer.parseInt((String) request.getParameter("quantity" + i)) ;
+                DetailedInvoice detailedInvoice = new DetailedInvoice(invoiceId, productId, quantity);
+                DBUtils.insertDetailedInvoice(conn, detailedInvoice);
+                DBUtils.updateProductQuantity(conn, productId, quantity);
+                int productAmount = DBUtils.getProductOriginalPrice(conn, productId) * quantity;
+                DBUtils.updateInvoiceAmount(conn, invoiceId, productAmount);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             errorString = e.getMessage();
         }
-        System.out.println("aidi: " + aidi);
+
+        if (errorString != null) {
+            RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/views/createImportInvoiceView.jsp");
+            dispatcher.forward(request, response);
+        }
+        else {
+            response.sendRedirect(request.getContextPath() + "/invoice/detail?invoiceId=" + invoiceId);
+        }
     }
 }
