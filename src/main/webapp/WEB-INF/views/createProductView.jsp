@@ -18,6 +18,7 @@
     <%@include file="../../fragment/dashboard.jsp"%>
     <div class="form_container">
       <h3>Thêm sản phẩm</h3>
+      <i class="errorString">${errorString}</i>
       <form method="POST" action="${pageContext.request.contextPath}/product/createProduct" enctype="multipart/form-data" class="form">
         <div class="form_input">
           <label for="name">Tên sản phẩm</label>
@@ -60,8 +61,10 @@
           <input type="file" value="${product.image}" id="image" name="image" style="display: none;">
         </div>
         <div class="form_button">
-          <input type="submit" value="Submit" />
-          <a href="productList" class="link_buttton">Cancel</a>
+          <input type="submit" value="Thêm" />
+          <a href="genre/add" class="link-button">Thêm phân loai</a>
+          <a href="brand/add" class="link-button">Thêm thương hiệu</a>
+          <a href="productList" class="link_buttton">Quay lại</a>
         </div>
 
       </form>

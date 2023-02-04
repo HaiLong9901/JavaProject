@@ -1,9 +1,6 @@
 package com.javaservlet.utils;
 
-import com.javaservlet.models.DetailedInvoice;
-import com.javaservlet.models.Invoice;
-import com.javaservlet.models.Product;
-import com.javaservlet.models.UserAccount;
+import com.javaservlet.models.*;
 
 import java.io.InputStream;
 import java.sql.*;
@@ -155,6 +152,9 @@ public class DBUtils {
             product.setOriginalPrice(originalPrice);
             product.setGenre(genre);
             product.setQuantity(quantity);
+            if (rs.getBinaryStream("image") != null) {
+                product.setImageUrl("http://localhost:8080/newweb_war_exploded/image?code=" + product.getCode());
+            }
             list.add(product);
         }
 
@@ -174,9 +174,10 @@ public class DBUtils {
             String genre = rs.getString("genre");
             int originalPrice = rs.getInt("original_price");
             InputStream image = rs.getBinaryStream("image");
+            int quantity = rs.getInt("quantity");
             Product product = new Product(name, price, brand, desc, genre, image, originalPrice);
+            product.setQuantity(quantity);
             product.setCode(code);
-            product.print();
             return product;
         }
 
@@ -286,7 +287,7 @@ public class DBUtils {
 
     //Invoice
     public static List<Invoice> queryImportInvoice(Connection conn) throws SQLException {
-        String sql = "select * from invoice\n" + "inner join useraccount on invoice.account = useraccount.userid where isimport=true";
+        String sql = "select * from invoice\n" + "inner join useraccount on invoice.account = useraccount.userid where isimport=true and amount <> 0";
         PreparedStatement prsm = conn.prepareStatement(sql);
         ResultSet rs = prsm.executeQuery();
         List<Invoice> list = new ArrayList<Invoice>();
@@ -302,7 +303,7 @@ public class DBUtils {
         return list;
     }
     public static List<Invoice> queryExportInvoice(Connection conn) throws SQLException {
-        String sql = "select * from invoice\n" + "inner join useraccount on invoice.account = useraccount.userid where isimport=false";
+        String sql = "select * from invoice\n" + "inner join useraccount on invoice.account = useraccount.userid where isimport=false and amount <> 0";
         PreparedStatement prsm = conn.prepareStatement(sql);
         ResultSet rs = prsm.executeQuery();
         List<Invoice> list = new ArrayList<Invoice>();
@@ -330,12 +331,7 @@ public class DBUtils {
         }
         String sql = "update invoice set amount = ? where invoiceid = ?";
         prsm = conn.prepareStatement(sql);
-        if (isImport) {
-            prsm.setInt(1, amount + currentAmount);
-        } else {
-            prsm.setInt(1, currentAmount - amount);
-        }
-
+        prsm.setInt(1, amount + currentAmount);
         prsm.setInt(2, invoiceId);
         prsm.executeUpdate();
     }
@@ -349,6 +345,7 @@ public class DBUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        invoice.print();
         prsm.setInt(1, accountId);
         prsm.setString(2, invoice.getPartner());
         prsm.setInt(3, invoice.getAmount());
@@ -405,6 +402,32 @@ public class DBUtils {
             int quantity = rs.getInt("quantity");
             DetailedInvoice detailedInvoice = new DetailedInvoice(invoiceId, productId, quantity);
             list.add(detailedInvoice);
+        }
+        return list;
+    }
+    public static List<Brand> brandQuery(Connection conn) throws SQLException {
+        String sql = "select * from brand";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        ResultSet rs = pstm.executeQuery();
+        List<Brand> list = new ArrayList<Brand>();
+        while (rs.next()) {
+            int brandId = rs.getInt("brandid");
+            String name = rs.getString("name");
+            Brand brand = new Brand(brandId, name);
+            list.add(brand);
+        }
+        return list;
+    }
+    public static List<Genre> queryGenre(Connection conn) throws SQLException {
+        String sql = "select * from public.genre";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        ResultSet rs = pstm.executeQuery();
+        List<Genre> list = new ArrayList<Genre>();
+        while (rs.next()) {
+            int genreid = rs.getInt("genreid");
+            String name = rs.getString("name");
+            Genre genre = new Genre(genreid, name);
+            list.add(genre);
         }
         return list;
     }

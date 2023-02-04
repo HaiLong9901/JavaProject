@@ -1,9 +1,10 @@
 package com.javaservlet.models;
 
 import java.io.InputStream;
+import java.io.Serializable;
 import java.sql.Blob;
 
-public class Product {
+public class Product implements Serializable {
     private int code;
     private String name;
     private int price;
@@ -13,6 +14,8 @@ public class Product {
     private InputStream image;
     private int originalPrice;
     private int quantity;
+
+    private String imageUrl;
     public Product() {
 
     }
@@ -126,7 +129,16 @@ public class Product {
         return quantity;
     }
 
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
     public void print() {
         System.out.println("code: " + this.code + " name: " + this.name + " price: " + this.price + " desc: " + this.product_desc + " original: " + this.originalPrice + " brand: " + this.brand + " genre: " + this.genre);
     }
+
 }

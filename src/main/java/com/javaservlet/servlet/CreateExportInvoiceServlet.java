@@ -61,17 +61,27 @@ public class CreateExportInvoiceServlet extends HttpServlet {
             Invoice invoice = new Invoice(Integer.toString(acc.getUserId()), 0, partner, false);
             invoiceId = DBUtils.insertInvoice(conn, invoice);
             for (int i = 0; i < count; ++i) {
-                int productId = Integer.parseInt((String) request.getParameter("product" + i)) ;
-                int quantity = Integer.parseInt((String) request.getParameter("quantity" + i)) ;
+                System.out.println("in loop");
+                int productId = 0;
+                int quantity = 0;
+                try {
+                    productId = Integer.parseInt((String) request.getParameter("product" + i)) ;
+                    quantity = Integer.parseInt((String) request.getParameter("quantity" + i)) ;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    errorString = "Số lượng phải là số";
+                }
                 Product product = DBUtils.findProduct(conn, productId);
                 if (product.getQuantity() < quantity) {
                     errorString = "Sản phẩm " + product.getName() + " còn " + product.getQuantity() + " không đủ để xuất " + quantity + " sản phẩm";
+                    System.out.println(errorString);
                     break;
                 }
                 DetailedInvoice detailedInvoice = new DetailedInvoice(invoiceId, productId, quantity);
                 DBUtils.insertDetailedInvoice(conn, detailedInvoice);
-                DBUtils.updateProductQuantity(conn, productId, quantity);
-                int productAmount = DBUtils.getProductOriginalPrice(conn, productId) * quantity;
+                DBUtils.updateProductQuantity(conn, productId, quantity*-1);
+                int productAmount = product.getPrice() * quantity;
+                System.out.println("price: " + productAmount);
                 DBUtils.updateInvoiceAmount(conn, invoiceId, productAmount);
             }
         } catch (SQLException e) {
@@ -79,11 +89,20 @@ public class CreateExportInvoiceServlet extends HttpServlet {
             errorString = e.getMessage();
         }
         if (errorString != null) {
+            List<Product> productList = new ArrayList<Product>();
+            try {
+                productList = DBUtils.queryProduct(conn);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            request.setAttribute("productList", productList);
+            request.setAttribute("account", acc.getFullName());
+            request.setAttribute("errorString", errorString);
             RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/views/createExportInvoiceView.jsp");
             dispatcher.forward(request, response);
         }
         else {
-            response.sendRedirect(request.getContextPath() + "/invoice/detail?invoiceId=" + invoiceId);
+            response.sendRedirect(request.getContextPath() + "/invoice/export/detail?invoiceId=" + invoiceId);
         }
     }
 }

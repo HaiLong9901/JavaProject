@@ -1,7 +1,5 @@
 package com.javaservlet.servlet;
 
-import com.javaservlet.controller.BrandController;
-import com.javaservlet.controller.GenreController;
 import com.javaservlet.models.Brand;
 import com.javaservlet.models.Genre;
 import com.javaservlet.models.Product;
@@ -69,8 +67,8 @@ public class EditProductServlet extends HttpServlet {
         List<Genre> genreList = null;
         List<Brand> brandList = null;
         try {
-            genreList = GenreController.queryGenre(conn);
-            brandList = BrandController.brandQuery(conn);
+            genreList = DBUtils.queryGenre(conn);
+            brandList = DBUtils.brandQuery(conn);
             product = DBUtils.findProduct(conn, code);
             product.print();
         } catch (SQLException e) {

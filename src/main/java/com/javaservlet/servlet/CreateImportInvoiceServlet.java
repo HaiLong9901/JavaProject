@@ -62,8 +62,15 @@ public class CreateImportInvoiceServlet extends HttpServlet {
             Invoice invoice = new Invoice(Integer.toString(acc.getUserId()), 0, partner, true);
             invoiceId = DBUtils.insertInvoice(conn, invoice);
             for (int i = 0; i < count; ++i) {
-                int productId = Integer.parseInt((String) request.getParameter("product" + i)) ;
-                int quantity = Integer.parseInt((String) request.getParameter("quantity" + i)) ;
+                int productId = 0;
+                int quantity = 0;
+                try {
+                    productId = Integer.parseInt((String) request.getParameter("product" + i)) ;
+                    quantity = Integer.parseInt((String) request.getParameter("quantity" + i)) ;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    errorString = "Số lượng phải là số";
+                }
                 DetailedInvoice detailedInvoice = new DetailedInvoice(invoiceId, productId, quantity);
                 DBUtils.insertDetailedInvoice(conn, detailedInvoice);
                 DBUtils.updateProductQuantity(conn, productId, quantity);
@@ -76,11 +83,20 @@ public class CreateImportInvoiceServlet extends HttpServlet {
         }
 
         if (errorString != null) {
+            List<Product> productList = new ArrayList<Product>();
+            try {
+                productList = DBUtils.queryProduct(conn);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            request.setAttribute("productList", productList);
+            request.setAttribute("account", acc.getFullName());
+            request.setAttribute("errorString", errorString);
             RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/views/createImportInvoiceView.jsp");
             dispatcher.forward(request, response);
         }
         else {
-            response.sendRedirect(request.getContextPath() + "/invoice/detail?invoiceId=" + invoiceId);
+            response.sendRedirect(request.getContextPath() + "/invoice/import/detail?invoiceId=" + invoiceId);
         }
     }
 }

@@ -9,3 +9,8 @@
     display: flex;
     overflow-y: auto;
 }
+.errorString {
+    color: red;
+    font-size: 1.6rem;
+    font-weight: bold;
+}

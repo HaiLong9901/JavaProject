@@ -1,11 +1,8 @@
 package com.javaservlet.servlet;
 
-import com.javaservlet.controller.BrandController;
-import com.javaservlet.controller.GenreController;
 import com.javaservlet.models.Genre;
 import com.javaservlet.models.Product;
 import com.javaservlet.utils.DBUtils;
-import com.javaservlet.utils.ExtractFile;
 import com.javaservlet.utils.MyUtils;
 import com.javaservlet.models.Brand;
 
@@ -22,7 +19,6 @@ import java.io.InputStream;
 import java.sql.Connection;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(urlPatterns = {"/product/createProduct"})
@@ -42,8 +38,8 @@ public class CreateProductServlet extends HttpServlet {
         List<Brand> brandList = null;
 
         try {
-            genreList = GenreController.queryGenre(conn);
-            brandList = BrandController.brandQuery(conn);
+            genreList = DBUtils.queryGenre(conn);
+            brandList = DBUtils.brandQuery(conn);
         } catch (SQLException e) {
             e.printStackTrace();
             errorString = e.getMessage();
@@ -64,43 +60,28 @@ public class CreateProductServlet extends HttpServlet {
         String genre = (String) request.getParameter("genre");
         String brand = (String) request.getParameter("brand");
         String productdesc = (String) request.getParameter("desc");
-//        List<InputStream> isList = new ArrayList<InputStream>();
-//        isList.add(null);
-//        System.out.println("len: " + request.);
-        System.out.println("name: " + name);
         InputStream image = null;
         Part imageFile = request.getPart("image");
         if (imageFile!= null) {
             System.out.println(imageFile.getName());
             System.out.println(imageFile.getSize());
             System.out.println(imageFile.getContentType());
-            image = imageFile.getInputStream();
-        }
-        try {
-//            for (Part part : request.getParts()) {
-//                String fileName = ExtractFile.extractFileName(part);
-//                System.out.println("filename: " + fileName);
-//                if (fileName != null && fileName.length() > 0) {
-//                    InputStream is = part.getInputStream();
-//                    isList.add(is);
-//                }
-//            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            if (imageFile.getSize() == 0) image = null;
+            else image = imageFile.getInputStream();
         }
 
-//        request.getPart();
         int price = 0;
         int originalPrice = 0;
+        String errorString =null;
         try {
             price = Integer.parseInt(priceStr);
             originalPrice = Integer.parseInt(originalPriceStr);
         } catch (Exception e) {
-
+            e.printStackTrace();
+            errorString = "Giá bán và giá gốc phải là 1 số";
         }
         Product product = new Product(name, price, brand, productdesc, genre, image , originalPrice);
-        System.out.println("na: "+ product.getName());
-        String errorString =null;
+
         if(errorString == null) {
             try {
                 DBUtils.insertProduct(conn, product);
@@ -113,6 +94,18 @@ public class CreateProductServlet extends HttpServlet {
         request.setAttribute("product", product);
 
         if (errorString != null) {
+            List<Genre> genreList = null;
+            List<Brand> brandList = null;
+
+            try {
+                genreList = DBUtils.queryGenre(conn);
+                brandList = DBUtils.brandQuery(conn);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            request.setAttribute("genreList", genreList);
+            request.setAttribute("brandList", brandList);
+            request.setAttribute("errorString", errorString);
             RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/views/createProductView.jsp");
             dispatcher.forward(request, response);
         }

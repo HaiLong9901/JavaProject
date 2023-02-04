@@ -34,11 +34,6 @@ public class ExportInvoiceListServlet extends HttpServlet {
             e.printStackTrace();
             errorString = e.getMessage();
         }
-        if (list != null) {
-            for (Invoice invoice:list) {
-                invoice.print();
-            }
-        }
         request.setAttribute("errorString", errorString);
         request.setAttribute("invoiceList", list);
         RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/exportInvoiceListView.jsp");

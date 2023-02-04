@@ -76,6 +76,6 @@ public class Invoice {
     }
 
     public void print() {
-        System.out.println("account: " + this.account + "date: " +this.createdAt + " amount: " + this.amount);
+        System.out.println("account: " + this.account + "date: " +this.createdAt + " amount: " + this.amount + " isimport: " + this.isImport);
     }
 }

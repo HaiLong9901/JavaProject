@@ -20,7 +20,7 @@
   <div class="form_container">
     <h3>Tạo đơn xuất kho</h3>
     <i class="errorString">${errorString}</i>
-    <form  method="POST" action="${pageContext.request.contextPath}/invoice/import/add" class="form">
+    <form  method="POST" action="${pageContext.request.contextPath}/invoice/export/add" class="form">
       <div class="form_input">
         <label for="account">Người tạo đơn</label>
         <input type="text" id="account" value="${account}" disabled>

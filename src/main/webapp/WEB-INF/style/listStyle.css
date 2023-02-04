@@ -5,6 +5,8 @@
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+    height: calc(100vh - 10rem);
+    overflow-y: auto;
 }
 .list_container .heading {
     width: 100%;
