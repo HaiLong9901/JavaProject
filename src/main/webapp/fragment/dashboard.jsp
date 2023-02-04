@@ -54,7 +54,7 @@
             padding: 1rem;
             display: flex;
             flex-direction: column;
-            background-color: darkblue;
+            /*background-color: darkblue;*/
         }
         /*.dashboard .dashboard__listFunction .invoice .invoice-block {*/
         /*    display: block;*/
@@ -77,7 +77,7 @@
         <li class="invoice">
             <div style="font-size: 1.6rem; padding-left: 2rem; color: white; cursor: pointer;">Hóa đơn <i class="fas fa-caret-down" style="font-size: 1.6rem; color: white"></i></div>
             <div class="sub-invoice invoice-block"><a href="${pageContext.request.contextPath}/invoice/import/list">Hóa đơn nhập hàng</a>
-                <a href="/">Hóa đơn xuất hàng</a></div>
+                <a href="${pageContext.request.contextPath}/invoice/export/list">Hóa đơn xuất hàng</a></div>
         </li>
         <li>
             <a href="/">Thống kê</a>

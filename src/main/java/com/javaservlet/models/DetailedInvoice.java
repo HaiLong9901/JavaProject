@@ -38,4 +38,7 @@ public class DetailedInvoice {
     public int getInvoiceId() {
         return invoiceId;
     }
+    public void print() {
+        System.out.println("invoiceid: " + this.invoiceId + " product: " + this.productId + " quantity: " + this.quantity);
+    }
 }

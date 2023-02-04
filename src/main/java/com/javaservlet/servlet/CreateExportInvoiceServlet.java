@@ -18,11 +18,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-@WebServlet(urlPatterns = {"/invoice/import/add"})
-public class CreateImportInvoiceServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/invoice/export/add"})
+public class CreateExportInvoiceServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    public CreateImportInvoiceServlet() {
+    public CreateExportInvoiceServlet() {
         super();
     }
 
@@ -42,7 +41,7 @@ public class CreateImportInvoiceServlet extends HttpServlet {
         }
         request.setAttribute("productList", productList);
         request.setAttribute("account", acc.getFullName());
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/createImportInvoiceView.jsp");
+        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/createExportInvoiceView.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -59,11 +58,16 @@ public class CreateImportInvoiceServlet extends HttpServlet {
         try {
             count = Integer.parseInt(countStr);
             acc = DBUtils.findUser(conn, account);
-            Invoice invoice = new Invoice(Integer.toString(acc.getUserId()), 0, partner, true);
+            Invoice invoice = new Invoice(Integer.toString(acc.getUserId()), 0, partner, false);
             invoiceId = DBUtils.insertInvoice(conn, invoice);
             for (int i = 0; i < count; ++i) {
                 int productId = Integer.parseInt((String) request.getParameter("product" + i)) ;
                 int quantity = Integer.parseInt((String) request.getParameter("quantity" + i)) ;
+                Product product = DBUtils.findProduct(conn, productId);
+                if (product.getQuantity() < quantity) {
+                    errorString = "Sản phẩm " + product.getName() + " còn " + product.getQuantity() + " không đủ để xuất " + quantity + " sản phẩm";
+                    break;
+                }
                 DetailedInvoice detailedInvoice = new DetailedInvoice(invoiceId, productId, quantity);
                 DBUtils.insertDetailedInvoice(conn, detailedInvoice);
                 DBUtils.updateProductQuantity(conn, productId, quantity);
@@ -74,9 +78,8 @@ public class CreateImportInvoiceServlet extends HttpServlet {
             e.printStackTrace();
             errorString = e.getMessage();
         }
-
         if (errorString != null) {
-            RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/views/createImportInvoiceView.jsp");
+            RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/views/createExportInvoiceView.jsp");
             dispatcher.forward(request, response);
         }
         else {

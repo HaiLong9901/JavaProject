@@ -2,6 +2,8 @@ package com.javaservlet.servlet;
 
 import com.javaservlet.models.DetailedInvoice;
 import com.javaservlet.models.Invoice;
+import com.javaservlet.models.Product;
+import com.javaservlet.models.UserAccount;
 import com.javaservlet.utils.DBUtils;
 import com.javaservlet.utils.MyUtils;
 
@@ -32,12 +34,28 @@ public class DetailInvoiceServlet extends HttpServlet {
         int invoiceId = 0;
         Invoice invoice = null;
         List<DetailedInvoice> list = null;
+        String accountName = null;
+        List<Product> productList = new ArrayList<>();
+        String errorString = null;
         try {
             invoiceId = Integer.parseInt(id);
             invoice = DBUtils.findInvoice(conn, invoiceId);
+            list = DBUtils.queryDetailInvoice(conn, invoiceId);
+            UserAccount acc = DBUtils.findUser(conn, Integer.parseInt(invoice.getAccount()));
+            accountName = acc.getFullName();
+            for (DetailedInvoice detailedInvoice : list) {
+                Product product = DBUtils.findProduct(conn, detailedInvoice.getProductId());
+                product.setQuantity(detailedInvoice.getQuantity());
+                productList.add(product);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
+            errorString = e.getMessage();
         }
+        request.setAttribute("errorString", errorString);
+        request.setAttribute("accountName", accountName);
+        request.setAttribute("productList", productList);
+        request.setAttribute("invoice", invoice);
         RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/detailInvoiceView.jsp");
         dispatcher.forward(request, response);
     }

@@ -20,10 +20,11 @@ public class Invoice {
         this.partner = partner;
         this.invoiceId = invoiceId;
     }
-    public Invoice(String account, int amount, String partner) {
+    public Invoice(String account, int amount, String partner, Boolean isImport) {
         this.account = account;
         this.amount = amount;
         this.partner = partner;
+        this.isImport = isImport;
     }
 
     public int getAmount() {
