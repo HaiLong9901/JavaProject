@@ -77,6 +77,6 @@ public class UserAccount {
     }
 
     public void print() {
-        System.out.println("Name: " + this.fullName + " Account: " + this.userName + " Email: " + this.email + " Phone: " + this.phone);
+        System.out.println("Name: " + this.fullName + " Account: " + this.userName + " Email: " + this.email + " Phone: " + this.phone + " id: " + this.userId);
     }
 }

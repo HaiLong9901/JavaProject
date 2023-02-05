@@ -19,9 +19,15 @@
     <div class="accountList_container list_container">
         <div class="heading">
             <h3>Danh sách quản lý kho</h3>
-            <div class="button">
-                <a href="${pageContext.request.contextPath}/account/create" >Thêm quản lý</a>
+            <div style="display: flex; gap: 2rem;">
+                <div class="button">
+                    <a href="${pageContext.request.contextPath}/account/create" >Thêm quản lý</a>
+                </div>
+                <div class="button">
+                    <a href="${pageContext.request.contextPath}/account/myacc">Tài khoản của tôi</a>
+                </div>
             </div>
+
         </div>
 
         <p style="color: red;">${errorString}</p>

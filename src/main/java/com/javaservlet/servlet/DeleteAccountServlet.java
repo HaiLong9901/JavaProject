@@ -1,5 +1,6 @@
 package com.javaservlet.servlet;
 
+import com.javaservlet.models.UserAccount;
 import com.javaservlet.utils.DBUtils;
 import com.javaservlet.utils.MyUtils;
 
@@ -9,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -23,6 +25,13 @@ public class DeleteAccountServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        UserAccount loginedUser = MyUtils.getLoginedUser(session);
+
+        if (loginedUser == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
         Connection conn = MyUtils.getStoredConnection(request);
         String userId = (String) request.getParameter("userId");
         String errorString = null;

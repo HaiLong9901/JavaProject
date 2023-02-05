@@ -10,32 +10,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27fde055-d85a-41ea-a0b0-939457b3faee" name="Changes" comment="update edit product">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/CreateGenreServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/DetailExportInvoiceServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/utils/HttpUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/detailExportInvoiceView.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/services/BrandApiServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/services/GenreApiServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/APIListServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/CreateBrandServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/MyAccountServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/APIListView.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/createBrandView.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/createGenreView.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/myAccountView.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/controller/BrandController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/controller/GenreController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/models/Invoice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/models/Invoice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/models/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/models/UserInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/models/UserAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/models/UserAccount.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/services/ProductApiServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/services/ProductApiServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/AccountServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/AccountServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/CreateAccountServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/CreateAccountServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/CreateExportInvoiceServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/CreateExportInvoiceServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/CreateGenreServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/CreateGenreServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/CreateImportInvoiceServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/CreateImportInvoiceServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/CreateProductServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/CreateProductServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/DeleteAccountServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/DeleteAccountServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/DeleteProductServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/DeleteProductServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/DetailExportInvoiceServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/DetailExportInvoiceServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/DetailInvoiceServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/DetailInvoiceServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/EditAccountServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/EditAccountServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/EditProductServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/EditProductServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/ExportInvoiceListServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/ExportInvoiceListServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/ImportInvoiceListServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/ImportInvoiceListServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/ImportInvoiceServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/ProductListServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/servlet/ProductListServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/utils/DBUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/utils/DBUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/utils/ExtractFile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/style/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/style/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/style/listStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/style/listStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/createExportInvoiceView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/createExportInvoiceView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/createProductView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/createProductView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javaservlet/utils/ValidationUltils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaservlet/utils/ValidationUltils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/accountListView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/accountListView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/createAccountView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/createAccountView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/editAccountView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/editAccountView.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/homeView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/homeView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/loginView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/loginView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/productListView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/productListView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/fragment/dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/fragment/dashboard.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,7 +247,9 @@
       <workItem from="1675336969705" duration="11254000" />
       <workItem from="1675435002290" duration="6985000" />
       <workItem from="1675489750128" duration="7492000" />
-      <workItem from="1675518896373" duration="9682000" />
+      <workItem from="1675518896373" duration="9830000" />
+      <workItem from="1675573958426" duration="9382000" />
+      <workItem from="1675583994247" duration="10000" />
     </task>
     <servers />
   </component>

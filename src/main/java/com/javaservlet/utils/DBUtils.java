@@ -126,6 +126,19 @@ public class DBUtils {
         prsm.executeUpdate();
     }
 
+    public static void updateAccountWithPassword(Connection conn, UserAccount account) throws SQLException {
+        String sql = "update useraccount set password = ?, fullname = ?, email = ?, phone = ? where userid = ?";
+        account.print();
+        PreparedStatement prsm = conn.prepareStatement(sql);
+        prsm.setString(1, account.getPassword());
+        prsm.setString(2, account.getFullName());
+        prsm.setString(3, account.getEmail());
+        prsm.setString(4, account.getPhone());
+        prsm.setInt(5, account.getUserId());
+
+        prsm.executeUpdate();
+    }
+
     public static List<Product> queryProduct(Connection conn) throws SQLException {
         String sql = "select * from product\n" +
                 "inner join brand on product.brand = brand.brandid\n" +
@@ -183,7 +196,50 @@ public class DBUtils {
 
         return null;
     }
+    public static List<Product> findProductByGenre(Connection conn, int genreId) throws SQLException {
+        String sql = "select * from product where genre = ?";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setInt(1, genreId);
+        ResultSet rs = pstm.executeQuery();
+        List<Product> list = new ArrayList<>();
+        while (rs.next()) {
+            String name = rs.getString("name");
+            int price = rs.getInt("price");
+            String brand = rs.getString("brand");
+            String desc = rs.getString("product_desc");
+            String genre = rs.getString("genre");
+            int originalPrice = rs.getInt("original_price");
+            InputStream image = rs.getBinaryStream("image");
+            int quantity = rs.getInt("quantity");
+            Product product = new Product(name, price, brand, desc, genre, image, originalPrice);
+            product.setQuantity(quantity);
+            list.add(product);
+        }
 
+        return list;
+    }
+    public static List<Product> findProductByBrand(Connection conn, int brandId) throws SQLException {
+        String sql = "select * from product where brand = ?";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setInt(1, brandId);
+        ResultSet rs = pstm.executeQuery();
+        List<Product> list = new ArrayList<>();
+        while (rs.next()) {
+            String name = rs.getString("name");
+            int price = rs.getInt("price");
+            String brand = rs.getString("brand");
+            String desc = rs.getString("product_desc");
+            String genre = rs.getString("genre");
+            int originalPrice = rs.getInt("original_price");
+            InputStream image = rs.getBinaryStream("image");
+            int quantity = rs.getInt("quantity");
+            Product product = new Product(name, price, brand, desc, genre, image, originalPrice);
+            product.setQuantity(quantity);
+            list.add(product);
+        }
+
+        return list;
+    }
     public static void updateProduct(Connection conn, Product product) throws SQLException {
         String sql = null;
         if (product.getImage() != null) {
@@ -418,6 +474,13 @@ public class DBUtils {
         }
         return list;
     }
+
+    public static void insertBrand(Connection conn, String brandName) throws SQLException {
+        String sql = "insert into brand(name) values(?)";
+        PreparedStatement prsm = conn.prepareStatement(sql);
+        prsm.setString(1, brandName);
+        prsm.executeUpdate();
+    }
     public static List<Genre> queryGenre(Connection conn) throws SQLException {
         String sql = "select * from public.genre";
         PreparedStatement pstm = conn.prepareStatement(sql);
@@ -430,5 +493,11 @@ public class DBUtils {
             list.add(genre);
         }
         return list;
+    }
+    public static void insertGenre(Connection conn, String genreName) throws SQLException {
+        String sql = "insert into genre(name) values(?)";
+        PreparedStatement prsm = conn.prepareStatement(sql);
+        prsm.setString(1, genreName);
+        prsm.executeUpdate();
     }
 }

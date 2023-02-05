@@ -16,7 +16,7 @@
 <div class="container">
     <%@include file="../../fragment/dashboard.jsp"%>
     <div class="form_container">
-        <h3>Sửa sản phẩm</h3>
+        <h3>Sửa tài khoản quản lý</h3>
         <i class="errorString" >${errorString}</i>
 <%--        <c:if test="${not empty acc}" style="width: 100%;">--%>
             <form method="POST" action="${pageContext.request.contextPath}/account/edit" class="form">

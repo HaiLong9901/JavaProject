@@ -2,6 +2,7 @@ package com.javaservlet.servlet;
 
 import com.javaservlet.models.Genre;
 import com.javaservlet.models.Product;
+import com.javaservlet.models.UserAccount;
 import com.javaservlet.utils.DBUtils;
 import com.javaservlet.utils.MyUtils;
 import com.javaservlet.models.Brand;
@@ -10,10 +11,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -32,6 +30,13 @@ public class CreateProductServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        HttpSession session = request.getSession();
+        UserAccount loginedUser = MyUtils.getLoginedUser(session);
+
+        if (loginedUser == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
         Connection conn = MyUtils.getStoredConnection(request);
         String errorString = null;
         List<Genre> genreList = null;

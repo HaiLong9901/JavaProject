@@ -80,7 +80,7 @@
                 <a href="${pageContext.request.contextPath}/invoice/export/list">Hóa đơn xuất hàng</a></div>
         </li>
         <li>
-            <a href="/">Thống kê</a>
+            <a href="${pageContext.request.contextPath}/listApi">API</a>
         </li>
         <li>
             <a href="${pageContext.request.contextPath}/logout">Đăng xuất</a>

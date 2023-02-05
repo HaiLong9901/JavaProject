@@ -15,11 +15,11 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-@WebServlet(urlPatterns = {"/product/genre/add"})
-public class CreateGenreServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/product/brand/add"})
+public class CreateBrandServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public CreateGenreServlet() {
+    public CreateBrandServlet() {
         super();
     }
 
@@ -32,17 +32,17 @@ public class CreateGenreServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/login");
             return;
         }
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/createGenreView.jsp");
+        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/createBrandView.jsp");
         dispatcher.forward(request, response);
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Connection conn = MyUtils.getStoredConnection(request);
-        String genreName = (String) request.getParameter("name");
+        String brandName = (String) request.getParameter("name");
         String errorString = null;
         try {
-            DBUtils.insertGenre(conn, genreName);
+            DBUtils.insertBrand(conn, brandName);
         } catch (SQLException e) {
             e.printStackTrace();
             errorString = e.getMessage();
@@ -50,7 +50,7 @@ public class CreateGenreServlet extends HttpServlet {
 
         if (errorString != null) {
             request.setAttribute("errorString", errorString);
-            RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/views/createGenreView.jsp");
+            RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/views/createBrandView.jsp");
             dispatcher.forward(request, response);
         } else {
             response.sendRedirect(request.getContextPath() + "/product/createProduct");

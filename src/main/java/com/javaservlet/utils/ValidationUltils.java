@@ -8,4 +8,12 @@ public class ValidationUltils {
         Matcher matcher = pattern.matcher(phone);
         return matcher.find();
     }
+    public static boolean validatePassword(String password) {
+        if (password.length() < 6) return false;
+        return true;
+    }
+    public static boolean validateUserName(String userName) {
+        if (userName.length() < 6) return false;
+        return true;
+    }
 }
